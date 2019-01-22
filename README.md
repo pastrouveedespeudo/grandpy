@@ -7,3 +7,4 @@ faire un 3eme avec un menu trop cool
 
 
 #et faut enregistrer java.html java1.html sinon ca marche pas ji comprend rien
+#en faire plein, plein de menu et les montrer aux recruteurs
