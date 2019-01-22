@@ -1,0 +1,95 @@
+img
+{
+border-radius:8px;
+}
+
+.menu
+{
+text-align:center;
+margin-left:50px;
+margin-top:80px;
+
+border:10px black double;
+height: 20px;
+width: 60px;
+display: inline-block;
+background-color:white;
+}
+
+
+li
+{
+list-style-type:circle;
+color:black;
+
+}
+
+
+
+.titre1
+{
+text-align:center;
+margin-top:0px;
+color:black;
+border:10px black double;
+border-radius:20px/15px;
+margin-left:500px;
+margin-right:500px;
+background-color:white;
+}
+
+
+.phrase-accroche
+{
+text-align: center;
+font-family:Comic Sans MS, Verdana;
+}
+
+
+body
+{
+background-color:green;
+}
+
+
+
+
+
+#dessus_input1
+{
+test-aling:center;
+}
+
+#formulaire
+{
+text-align:center;
+}
+
+
+
+h1
+{
+text-align: center;
+color:blue;
+}
+
+h2
+{
+text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
