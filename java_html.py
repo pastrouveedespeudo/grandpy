@@ -30,10 +30,12 @@
         <div class="menu">Menu</div>
   
         <ul>
-            <li><a href="java1.html">Grand py 2</a></li>
-            <li></li>
-            <li></li>
+            <li><a href="java1_html.html">Grand py 2</a></li>
+            <li>siis</li>
+            <li>soso</li>
             <li>salut</li>
+            <li><a href="java2_html.html">Page menu</a></li>
+           
         </ul>
 
 
