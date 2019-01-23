@@ -1,6 +1,6 @@
 # grandpy
 
-#oh purée jpe utilisé flask pour mettre direct mon <p class = "code"><strong>code html</strong></p> ,
+#oh purée jpe utilisé flask pour mettre direct mon <p class = "code"><strrrong>code html</strong></p> ,
 
 #.code{
 text-align:center;
