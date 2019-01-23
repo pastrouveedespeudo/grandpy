@@ -1,15 +1,16 @@
 # grandpy
 
-#jcrois y'a des blocks enfaites
+#oh purée jpe utilisé flask pour mettre direct mon <p class = "code"><strong>code html</strong></p> ,
 
-#et fais un menu fixe en haut classe, faut découpé chaque lien dans une bordure...
+#.code{
+text-align:center;
+}
 
-#oups enfete le java c du python quoi sauf que c pour les pages,
+#mais js ca sert a quoi alors? bah si jpe utiliser python
 
-#les framewroks c un truk pour allé plus vite genre un modele voiture genre voiture et la marque rajoute les equipement
+#yo = prompt("a quoi ca sert")
+#while(yo !== "ben ca sert a..."){
+  console.log("gogogoogo")  
+}
 
-#et les test unitaires c pour tester
-
-#var prenom = "jb"
-
-#console.log("c parto " + prenom)
+c trop marrant ^^
