@@ -1,10 +1,7 @@
 # grandpy
 
-faire un 3eme avec un menu trop cool
-#trouver le menu genre defilement tactil
-#les div et tout prennen tout l'espace trouve
+#jcrois y'a des blocks enfaites
+
+#et fais un menu fixe en haut classe, faut découpé chaque lien dans une bordure...
 
 
-
-#et faut enregistrer java.html java1.html sinon ca marche pas ji comprend rien
-#en faire plein, plein de menu et les montrer aux recruteurs
