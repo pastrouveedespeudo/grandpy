@@ -1,35 +1,11 @@
 # grandpy
 
-#function demande(){
-  var yo = prompt("tu comprends un truk sur les prototypes ? o/n")
-  if(yo === "o"){
-    console.log("c bien  !")
-    
-  }else if(yo === "n"){
-    console.log("moi non plus waaaaaa")
-  }
-  
-  
-}
+#ah bah ok jcomprend pk jcomprenais rien au code des fois...
 
-demande()
+#sans faire expres jme suis laissé entrainé par ce mec... a la base jvoulais juste voir...jferai les deux cours 
 
+#il est cool
 
-console.log("mais je sais faire ca !")
-alert("CAAAAAAA")
+#par contre les vous avez vu c facile ^^ t'essais de copier squil met et il est deja passé a la suite.. baaa 
 
-
-var lar = prompt("largeur?")
-var long = prompt("longueur?")
-
-function surface(nombre1, nombre2){
-  var self = this
-  var sur = nombre1 * nombre2
-  console.log("surface de "+sur)
-  
-  
-}
-
-surface(lar, long)
-
-#jcomprend rien ca mere au proto... 
+#en vrai jcrois j'ai compris
