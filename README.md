@@ -1,11 +1,11 @@
 # grandpy
 
-#ah bah ok jcomprend pk jcomprenais rien au code des fois...
+#oh mon dieu jcroyais etre assez fort mais pas du tout
 
-#sans faire expres jme suis laissé entrainé par ce mec... a la base jvoulais juste voir...jferai les deux cours 
+#joubliais les décorateurs @classmethode et le cls
 
-#il est cool
+#TOUT est statique....
 
-#par contre les vous avez vu c facile ^^ t'essais de copier squil met et il est deja passé a la suite.. baaa 
+#RIEN n'est rangé....
 
-#en vrai jcrois j'ai compris
+#hihihi enfete je sais rien :D
