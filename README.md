@@ -1,11 +1,15 @@
 # grandpy
 
-#demander si on a le droit de changer grand py en grand cat,
+#jpe pas faire autrement, chui obligé de tout mettre
 
-#10h a chercher pourquoi le style se mettait pas
+#oh purée jcrois jadore html
 
-#faut vraiment un s a stryle et images ? sté que ca ?
+#juste a trouvé comment mettre ca en h2
 
-#ok mtn le titre reste en rouge oh putin de merde mais c horrible ce machin la
+#de les superposé et de parser avec js
 
-#strop dla merde flask
+#de faire une ia avec le tuto js ia
+
+#de faire plein de page
+
+#et je serai refais (fin le truk ia nik)
