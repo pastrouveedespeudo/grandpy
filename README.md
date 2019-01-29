@@ -2,6 +2,7 @@
 
 #demander si on a le droit de changer grand py en grand cat,
 
-#10h a chercher pourquoi l'image se mettait pas...
+#10h a chercher pourquoi le style se mettait pas
 
-#bon ben pluqua
+#faut vraiment un s a stryle et images ? sté que ca ?
+
