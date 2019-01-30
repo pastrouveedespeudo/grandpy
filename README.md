@@ -1,19 +1,7 @@
 # grandpy
 
 
-#bon ben sté le form.... jvoulais pas que ma page se reinitialise....
-
-#mais jcrois chui obligé, stock ca dans une liste et a chaque fois tu remetra mais faut que l'image tourne oh purée...
-
-
-
-
-
-
-
-
-
-
+#javais pas lu la consigne en entier faut utiliser ajax je sais pas c quoi
 
 
 #et rajoute un autre chat qui demande au chat s'il veut de l'aide pcque ca a l'air lourd
