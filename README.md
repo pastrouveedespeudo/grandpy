@@ -5,6 +5,17 @@
 
 #et le chat dit ouais stp chat va pas dans des bulles
 
+#jsp on a le droit de le faire en python c la meme chose en js mais...
+
+#faire la barre defilante mais automatique
+
+#et faire le parsage en python au pire je referai 
+
+#et ne récupérer que la derniere chaine de l'input
+
+#jpourrai aussi le faire avec dom mais beautiful c bien aussi je sais pas
+
+
 #faire défiler dans about l'album de chat
 
 #mettre le chat qui chie soit dans l'erreur 404 ou autre
