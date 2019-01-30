@@ -1,6 +1,19 @@
 # grandpy
 
 
+#20 video 20 pages pour une balise action oooh jtai venere
+
+
+
+
+
+
+
+
+
+
+
+
 #et rajoute un autre chat qui demande au chat s'il veut de l'aide pcque ca a l'air lourd
 
 #et le chat dit ouais stp chat va pas dans des bulles
