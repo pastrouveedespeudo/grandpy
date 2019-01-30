@@ -1,8 +1,9 @@
+
 {%extends "core/default.html"%}
 
 {%block body%}
 
-    <style>
+    <style type="text/css">
 
         .div{
             position:relative;
@@ -34,6 +35,21 @@
             font-style:italic;
         }
 
+
+        .div{
+            text-align:center;
+            border:2px solid black;
+            width: 580px;
+            height: 300px;
+            background-color:pink;
+            overflow:auto;
+
+            
+        }
+
+        #monCadre{  
+        }
+
     </style>
 
 
@@ -44,13 +60,14 @@
 
 
 
-
+    <br><br><br><br>
+    
 
     <div class="div">
-        <div id="monCadre"></div>
+        <div id="monCadre"></div>  
     </div>
 
-
+    
 
 
     <br/><br/>
@@ -66,6 +83,19 @@
     <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
     <br/><br/><br/><br/><br/>
 
+
+
+    <p>salt</p>
+
+
+
+
+
+
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
     <script type = "text/javascript">
 
@@ -75,10 +105,8 @@
 
     function message(){
         var recup = document.getElementById("input").value;
-        historic.push(recup);
+        historic.push(recup+"<br>");
         document.getElementById("monCadre").innerHTML = historic;
-        
-
     }
 
 
