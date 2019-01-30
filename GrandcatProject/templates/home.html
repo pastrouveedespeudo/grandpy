@@ -45,7 +45,7 @@
             width: 580px;
             height: 300px;
             background-color:pink;
-            overflow:scroll;    
+            overflow:scroll;
         }
 
 
@@ -82,7 +82,8 @@
     <br/><br/>
     
     <div id="blockinput">
-        <input type="text" id="input" size="100" placeholder="rentre ta réponse trou duc" /><br>
+        <input type="text" id="input" size="100"
+         placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?" /><br>
         <input type="button" value="Enter" onclick="message();" />
     </div>
 
@@ -108,13 +109,21 @@
     <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
     <script type = "text/javascript">
 
+
+    var height = 0;
     var historic = []
 
+
+
+          
     function effacer(){
         document.getElementById("input").value = "";
-
     }
 
+    function scrollbas(){
+        height = document.getElementById('input').scrollHeight;
+        document.getElementById('input').scrollTo(0, height);
+    }
 
     function message(){
         
@@ -122,6 +131,9 @@
         historic.push(recup+"<br>");
         document.getElementById("monCadre").innerHTML = historic.join("");
         effacer();
+        scrollbas();
+  
+ 
     }
 
 
@@ -132,18 +144,30 @@
         historic.push(recup+"<br>");
         document.getElementById("monCadre").innerHTML = historic.join("");
         effacer();
+        scrollbas();
+ 
+
+
      }
     });
 
 
-    
 
     function recherche(){
         var recup = document.getElementById("input").value;
+        var path = `https://www.google.com/maps/search/${recup}`;
+        soup = bs4.BeautifulSoup(path, "lxml");
+        find = soup.find("p", class_="widget-pane-link");
+        source = urllib.request.urlopen(str(path));
+        
+        print(source.text)
 
+
+        
+  
     }
-
-    
+    recherche();
+   
 
     
 
