@@ -26,6 +26,8 @@
 
         #blockinput{
             text-align:center;
+        
+            
      
 
         }
@@ -33,6 +35,7 @@
         #input{
             text-align:center;
             font-style:italic;
+            
         }
 
 
@@ -42,13 +45,19 @@
             width: 580px;
             height: 300px;
             background-color:pink;
-            overflow:auto;
-
-            
+            overflow:scroll;    
         }
 
-        #monCadre{  
+
+        .chat_gauche{
+
+
+
         }
+
+
+        
+
 
     </style>
 
@@ -71,7 +80,7 @@
 
 
     <br/><br/>
-
+    
     <div id="blockinput">
         <input type="text" id="input" size="100" placeholder="rentre ta réponse trou duc" /><br>
         <input type="button" value="Enter" onclick="message();" />
@@ -83,9 +92,9 @@
     <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
     <br/><br/><br/><br/><br/>
 
+    
 
-
-    <p>salt</p>
+   
 
 
 
@@ -100,25 +109,39 @@
     <script type = "text/javascript">
 
     var historic = []
-    
 
+    function effacer(){
+        document.getElementById("input").value = "";
 
-    function message(){
-        var recup = document.getElementById("input").value;
-        historic.push(recup+"<br>");
-        document.getElementById("monCadre").innerHTML = historic;
     }
 
 
-    $('#input').keyup(function(e) {    
+    function message(){
+        
+        var recup = document.getElementById("input").value;
+        historic.push(recup+"<br>");
+        document.getElementById("monCadre").innerHTML = historic.join("");
+        effacer();
+    }
+
+
+    $('#input').keyup(function(e) {
+        
        if(e.keyCode == 13) {
         var recup = document.getElementById("input").value;
-        historic.push(recup);
-        document.getElementById("monCadre").innerHTML = historic;
+        historic.push(recup+"<br>");
+        document.getElementById("monCadre").innerHTML = historic.join("");
+        effacer();
      }
     });
 
 
+    
+
+    function recherche(){
+        var recup = document.getElementById("input").value;
+
+    }
 
     
 
