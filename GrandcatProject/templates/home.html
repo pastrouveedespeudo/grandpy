@@ -17,7 +17,6 @@
         
         form{
             text-align:center;
-
         }
        
         p{
@@ -26,16 +25,11 @@
 
         #blockinput{
             text-align:center;
-        
-            
-     
-
         }
 
         #input{
             text-align:center;
             font-style:italic;
-            
         }
 
 
@@ -50,9 +44,6 @@
 
 
         .chat_gauche{
-
-
-
         }
 
 
@@ -70,30 +61,29 @@
 
 
     <br><br><br><br>
-    
 
+    
     <div class="div">
         <div id="monCadre"></div>  
     </div>
 
     
-
-
+    <h1>{{message}}</h1>
     <br/><br/>
-    
+    <form method="POST" action="/">
     <div id="blockinput">
-        <input type="text" id="input" size="100"
-         placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?" /><br>
+        <input type="text" id="input" size="100" name="input"
+         placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
+         action="home" /><br>
         <input type="button" value="Enter" onclick="message();" />
     </div>
+    </form>
 
-  
+
 
     
     <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
     <br/><br/><br/><br/><br/>
-
-    
 
    
 
@@ -115,12 +105,14 @@
 
 
 
-          
+        
     function effacer(){
+        
         document.getElementById("input").value = "";
     }
 
     function scrollbas(){
+        
         height = document.getElementById('input').scrollHeight;
         document.getElementById('input').scrollTo(0, height);
     }
@@ -130,10 +122,9 @@
         var recup = document.getElementById("input").value;
         historic.push(recup+"<br>");
         document.getElementById("monCadre").innerHTML = historic.join("");
+        ecriture(recup);
         effacer();
-        scrollbas();
-  
- 
+      
     }
 
 
@@ -143,30 +134,21 @@
         var recup = document.getElementById("input").value;
         historic.push(recup+"<br>");
         document.getElementById("monCadre").innerHTML = historic.join("");
+        ecriture(recup);
         effacer();
-        scrollbas();
- 
-
-
+        
+        
      }
     });
 
 
 
-    function recherche(){
-        var recup = document.getElementById("input").value;
-        var path = `https://www.google.com/maps/search/${recup}`;
-        soup = bs4.BeautifulSoup(path, "lxml");
-        find = soup.find("p", class_="widget-pane-link");
-        source = urllib.request.urlopen(str(path));
-        
-        print(source.text)
-
-
-        
+    function ecriture(para){
+    alert(historic)
+    
   
     }
-    recherche();
+  
    
 
     
