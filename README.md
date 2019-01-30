@@ -1,7 +1,9 @@
 # grandpy
 
 
-#20 video 20 pages pour une balise action oooh jtai venere
+#bon ben sté le form.... jvoulais pas que ma page se reinitialise....
+
+#mais jcrois chui obligé, stock ca dans une liste et a chaque fois tu remetra mais faut que l'image tourne oh purée...
 
 
 
