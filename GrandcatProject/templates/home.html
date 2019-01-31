@@ -1,9 +1,40 @@
 
-{%extends "core/default.html"%}
 
-{%block body%}
 
+
+<!DOCTYPE html>
+<html>
+    
+    
+    <meta charset="utf-8" />
+    <title>GrandPY</title>
+    
+            
     <style type="text/css">
+    
+        h1{
+            text-align:center;
+        }
+        
+        h2{
+            text-align:center;
+        }
+
+
+        .image1{
+            border="6";
+            border-radius:8px;
+        }
+
+        .menu{
+            position:relative;
+            left:2500px;
+        }
+
+        h3{
+            text-align:center;
+            font-style:italic;
+        }
 
         .div{
             position:relative;
@@ -14,7 +45,6 @@
             text-align:center;
         }
 
-        
         form{
             text-align:center;
         }
@@ -43,6 +73,13 @@
         }
 
 
+        #map{
+            height:200px;
+            width:40%;
+        }
+
+
+
         .chat_gauche{
         }
 
@@ -53,147 +90,150 @@
     </style>
 
 
-
-
-
-
-
-
-
-    <br><br><br><br>
+    <head>
 
     
-    <div class="div">
-        <div id="monCadre"></div>  
-    </div>
+        <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
 
-    
-    <h1>{{message}}</h1>
-    <br/><br/>
-    <form method="POST" action="/">
-    <div id="blockinput">
-        <input type="text" id="input" size="100" name="input"
-         placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
-         action="home" /><br>
-        <input type="button" value="Enter" onclick="message();" />
-    </div>
-    </form>
+           
+        <h1>HOME</h1>
+        <h2>Hey I'm GrandCat</h2>
+        <h3>Site exclusivement réservé à la recherche d'adresse</h3>
 
 
 
-    
-    <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
-    <br/><br/><br/><br/><br/>
-
-   
-
-
+        <ul>
+            <li>ezaeza</li>
+            <li>ezaeza</li>
+            <li>dzdza</li>
+        </ul>
 
 
 
+    </head>
+
+
+    <body>
+
+
+        <div id="map"></div>
+ 
+
+
+        <br><br><br><br>
+
+        ddzd
+        {{path}}
+        <div class="div">
+            <div id="monCadre"></div>  
+        </div>
+
+        
+        
+        <br/><br/>
+        
+        <div id="blockinput">
+        
+                <input type="text" id="input" size="100" name="input"
+                 placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
+                 action="home" /><br>
+                <input type="button" value="Enter" onclick="message();" />
+           
+        </div>
+        
 
 
 
+        
+        <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
+        <br/><br/><br/><br/><br/>
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
+        </script>
+
+    </body>
 
 
     <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
     <script type = "text/javascript">
 
 
-    var height = 0;
-    var historic = []
-
-
-
+        var height = 0;
+        var historic = []
         
-    function effacer(){
-        
-        document.getElementById("input").value = "";
-    }
-
-    function scrollbas(){
-        
-        height = document.getElementById('input').scrollHeight;
-        document.getElementById('input').scrollTo(0, height);
-    }
-
-    function message(){
-        
-        var recup = document.getElementById("input").value;
-        historic.push(recup+"<br>");
-        document.getElementById("monCadre").innerHTML = historic.join("");
-        ecriture(recup);
-        effacer();
-      
-    }
 
 
-    $('#input').keyup(function(e) {
-        
-       if(e.keyCode == 13) {
-        var recup = document.getElementById("input").value;
-        historic.push(recup+"<br>");
-        document.getElementById("monCadre").innerHTML = historic.join("");
-        ecriture(recup);
-        effacer();
-        
-        
-     }
-    });
+            
+        function effacer(){
+            
+            document.getElementById("input").value = "";
+        }
+
+        function scrollbas(){
+            
+            height = document.getElementById('input').scrollHeight;
+            document.getElementById('input').scrollTo(0, height);
+        }
 
 
 
-    function ecriture(para){
-    alert(historic)
+
+
+
+
+
+        function message(){
+            
+            var recup = document.getElementById("input").value;
+            var path ="https://www.google.com/maps/search/" + recup
+            alert(path)
+
+
+            
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre").innerHTML = historic.join("");
+            effacer();
+          
+        }
+
+
+        $('#input').keyup(function(e) {
+            
+           if(e.keyCode == 13) {
+            var recup = document.getElementById("input").value;
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre").innerHTML = historic.join("");
+            effacer();
+            
+            
+         }
+        });
+
+
     
-  
-    }
-  
-   
+        function initMap(){
+            var options = {
+                zoom:13,
+                center:{lat:44.7167,lng:5.05}
+            }
+            var map = new google.maps.Map(document.getElementById("map"), options);
+        } 
+         
 
-    
+        function yo(){
+            var requete = new XMLHttpRequest();
+            requete.open("GET",url);
+            requete.reponseType = "text";
 
-
-
+        }
 
 
     </script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{%endblock body%}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</html>
 
 
 
