@@ -9,3 +9,5 @@
 #faut juste pas que ca sactualise puyin
 
 #jdeviens fou flask ajax jquerry googlemap vos grand morts va
+
+#ouais ben je sais rien hihihi jaime apprendre niker vous oh c horrible
