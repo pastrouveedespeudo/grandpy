@@ -1,0 +1,125 @@
+
+
+
+
+
+
+
+
+        coucocuuuuuu
+           <br/><br/>
+              <br/><br/>
+                 <br/><br/>
+                    <br/><br/>
+                    
+        {{message}}
+        <div class="div">
+            <div id="monCadre"></div>  
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+ <form method="POST" action="/registration">
+    <div id="blockinput">
+        
+        <input type="text" id="input" size="100" name="input"
+         placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
+         action="registration" /><br>
+        <input type="button" value="Enter" onclick="message();" />
+    </div>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
+    <script type = "text/javascript">
+
+
+        var height = 0;
+        var historic = []
+        
+
+
+            
+        function effacer(){
+            
+            document.getElementById("input").value = "";
+        }
+
+        function scrollbas(){
+            
+            height = document.getElementById('input').scrollHeight;
+            document.getElementById('input').scrollTo(0, height);
+        }
+
+
+
+
+
+
+
+
+        function message(){
+            
+            var recup = document.getElementById("input").value;
+            var path ="https://www.google.com/maps/search/" + recup
+          
+
+
+            
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre").innerHTML = historic.join("");
+            effacer();
+          
+        }
+
+
+        $('#input').keyup(function(e) {
+            
+           if(e.keyCode == 13) {
+            var recup = document.getElementById("input").value;
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre").innerHTML = historic.join("");
+            effacer();
+            
+            
+         }
+        });
+
+
+    
+        function initMap(){
+            var options = {
+                zoom:13,
+                center:{lat:44.7167,lng:5.05}
+            }
+            var map = new google.maps.Map(document.getElementById("map"), options);
+        } 
+         
+
+        $(document).ready(function(){
+            console.log("sa mere ");
+
+        });
+
+
+    </script>
