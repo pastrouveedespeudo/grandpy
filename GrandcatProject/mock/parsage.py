@@ -1,37 +1,11 @@
-import requests
-from bs4 import BeautifulSoup
-import urllib.request
-import urllib
+from geopy.geocoders import Nominatim
 
-class FAUTAJAX:
-
-    @classmethod
-    def rechercher(cls, recherche):
-
-        cls.liste = []
-        cls.recherche = recherche
-        path = "https://www.google.com/maps/search/{}".format(str(cls.recherche))
+geocoder = Nominatim()
+adresse = "openclassrooms"
+location = geocoder.geocode(adresse, True, 30)
+print((location.latitude, location.longitude))
 
 
-        with urllib.request.urlopen(path) as url:
-            s = url.read()
+#ok refais les cours ok t'as vu pleins de tuto cool mais y'a certain truk que tu sais pas faire comme ajax
 
-        cls.liste.append(s)
-
-     
-
-    @classmethod
-    def recherche_liste(cls):
-        classe = "textarea"
-        search = str(cls.liste).find(str(classe))
-    
-        print(search)
-        print(cls.liste[search-200:search])
-
-
-
-
-
-yo = FAUTAJAX()
-yo.rechercher("openclassrooms")
-yo.recherche_liste()
+#jy comprend rien, fais ajax et refais les cours et t'aura juste a mettre lalti et la longi et c bon
