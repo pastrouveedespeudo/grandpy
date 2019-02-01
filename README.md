@@ -8,4 +8,4 @@
 
 #faut juste pas que ca sactualise puyin
 
-#jdeviens fou flask ajax jquerry vos grand morts va
+#jdeviens fou flask ajax jquerry googlemap vos grand morts va
