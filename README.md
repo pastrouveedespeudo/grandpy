@@ -7,3 +7,6 @@
 #bon mysql bug... jpe plus me co
 
 "#jvoualis recup les données des tables
+
+#j'ai faillis apprendre le php echo bonjour... jconnais par coeur mtn o merde sté horrible j'ai jamais autant try hard a par en physique
+
