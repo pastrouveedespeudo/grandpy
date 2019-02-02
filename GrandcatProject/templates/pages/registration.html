@@ -15,6 +15,7 @@
                     <br/><br/>
                     
         {{message}}
+        :message
         <div class="div">
             <div id="monCadre"></div>  
         </div>
@@ -22,53 +23,78 @@
 
 
 
+        <?php ;
+        $recup=$_POST['test'];
+        echo $recup;
+        ?>
 
-
-
-
-
-
-
-     <form id="toto">
-
- 
     
+
+
+     <form id="toto" name = "titi" return false;>
+
+        <input type="text" id="input" size="100" name="input"
+            placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
+
+
+             
+        <input type="submit" id="sub_input" name="sub" value="Enter"/>
+
         
-    <input type="text" id="input" size="100" name="input"
-        placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
-
-
-         
-    <input type="submit" id="sub_input" name="sub" value="Enter"/>
-
-    
-    <input type="button" id="button_input" name="bubu" value="Enter"/>
+        <input type="button" id="button_input" name="bubu" value="Enter" />
 
 
 
     </form>
 
 
-    <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
-    <script type = "text/javascript">
+    
+
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>    <script type = "text/javascript">
+
+
+    
+
+    
+
+    $('form').on('submit',function(event){
+        event.preventDefault();
+        var a = document.getElementById("input").value;
+        $.post('/', {"test":a},function(data){alert(a)});
+
+    });
+        
+    var a = {"test":a};
 
 
 
-        $('#sub_input').on('click',function(e){
+
+
+    $(function() {
+        $('form').on('submit',function(event){
+            //event.preventDefault();
+       
             
             const recup = document.getElementById("button_input").value;
-            var path =` https://www.google.com/maps/search/${recup}`
+            //var path =` https://www.google.com/maps/search/${recup}`
             
-            console.log(path);
-            event.preventDefault();
-
+            //console.log(path);
+            
             $.ajax({
-
+                url:"/registration",
+                type:"POST",
+                //data:{'values':recup},
+                data:{'values':"que c dur"}
+                
+        
             });
-
-            
+           event.preventDefault();
         });
-
+        
+     });
 
             
 
@@ -117,15 +143,8 @@
 
 
 
-#okkkk ca me fou dans le cmd, ca reactualise pas mais le cmd, fin les données vers ma route renvoie un ""
 
-#tin jcromprenais pas que $().""("",func)
 
-#sté comme des appends, del c comme des cv2.rectangle okkkkk au lieu que je fasse a,b,c,d = x+xezfezfez
-
-#on me donne le code enfete !!! ca devient clair c pour ca qu'on repetaient au lieu de refaire la roue
-
-#des coedeurs ont fait le travail et nous donne okkkk woua sté chaud 
 
 
 
