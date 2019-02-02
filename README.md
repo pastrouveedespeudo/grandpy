@@ -1,10 +1,9 @@
 # grandpy
 
+#fallait.... fallait faire un dico juste un dictionnaire jcrois ca marche, j'ai eu 2 fois le truk sans reactualiser o merde
 
-#enfete flask c du full stack j'adore ce mot jlai appris hier html+css+js+python+php+mysql ouaaaaa
+#a ben mtn je connais jquerry js et ajax bande de ... c pas du code c juste une technologie jcomprenais pas ca
 
-#par contre si apres mangé ca mrche pas ... j'ai pas compris le truk du dico pk tu me renvoie un format json
+#bon mysql bug... jpe plus me co
 
-#stock toi dans ma variable coonard imagine tu fini taleur faudra le mettre en dynamique et tout séparer dans des fichiers appropirés
-
-#et jpourrais enfin retourner en python... c nul les framworks ca eneleve tout le coté amusant
+"#jvoualis recup les données des tables
