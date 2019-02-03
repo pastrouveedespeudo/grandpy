@@ -5,9 +5,11 @@ import bs4 as bs
 import urllib.request
 from PIL import Image
 from flask import Flask
+from parsage import *
 from flask import request
 from flask import url_for
 from flask import jsonify
+from geopy.geocoders import Nominatim
 from flask import render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
@@ -40,31 +42,36 @@ class Echange(db.Model):
 
 
 
-
 @app.route('/', methods=['GET','POST'])
 def home():
   
-   
+    address=""
     yo = request.args.get("input")
- 
+    geolocalisation.recherche(yo, address)
 
-    print(yo,"                 yoooooooooooooo")
+    print(yo,"addresse:",address,"                 yoooooooooooooo")
+    print(yo,address,"                 yoooooooooooooo")
+    print(yo,address,"                 yoooooooooooooo")
+    print(yo,address,"                 yoooooooooooooo")
 
 
     return render_template("home.html",message=yo)
 
 @app.route('/registration', methods=["GET", "POST"])
 def registration():
-
+   
     yo = request.form['test']
- 
+    address = []
     path = "https://www.google.com/maps/search/{}".format(yo)
     print(yo,"548498464874648")
+    geolocalisation.recherche(yo, address)
+    print(address)
+    print("COUCOUUUUUUUUUUUUUUUUUUU", address,"coucuuuuuuuuuu")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
-    print("COUCOUUUUUUUUUUUUUUUUUUU")
-    return render_template("pages/registration.html",path=path)
+    print(address)
+    return render_template("home.html", address=address)
 
 
 @app.route('/about')
@@ -75,7 +82,6 @@ def about():
 
 
 
-   
         
 @app.route('/demo')
 def demo():
@@ -110,9 +116,9 @@ def page_not_found(error):
 
 
 
-
-
 if __name__=="__main__":
     db.create_all()
     app.run(debug=True, port=3000)
     home()
+
+
