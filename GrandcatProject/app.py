@@ -41,9 +41,20 @@ class Echange(db.Model):
 
 
 
-
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=['GET','POST'])
 def home():
+  
+   
+    yo = request.args.get("input")
+ 
+
+    print(yo,"                 yoooooooooooooo")
+
+
+    return render_template("home.html",message=yo)
+
+@app.route('/registration', methods=["GET", "POST"])
+def registration():
 
     yo = request.form['test']
  
@@ -53,7 +64,7 @@ def home():
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
-    return render_template("home.html",path=path)
+    return render_template("pages/registration.html",path=path)
 
 
 @app.route('/about')
@@ -78,17 +89,6 @@ def recup_data():
 
 
 
-@app.route('/registration', methods=['GET','POST'])
-def registration():
-  
-   
-    yo = request.args.get("input")
- 
-
-    print(yo,"                 yoooooooooooooo")
-
-
-    return render_template("pages/registration.html",message=yo)
    
 
 @app.route('/yo', methods=['GET','POST'])
