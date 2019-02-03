@@ -7,7 +7,7 @@ class geolocalisation:
     def recherche(cls, adresse, variable):
 
         cls.adresse = adresse
-        cls.variable = []
+        cls.variable = variable
 
         geocoder = Nominatim()
       
@@ -16,7 +16,7 @@ class geolocalisation:
         cls.variable.append(location.address)
         
         print((location.latitude, location.longitude))
-        print(cls.variable)
+        print(cls.variable,"parsageeeeeeeeee")
   
 
         
