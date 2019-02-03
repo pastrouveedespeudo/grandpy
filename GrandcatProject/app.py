@@ -1,5 +1,6 @@
 import os
 import subprocess  
+from geopy.geocoders import Nominatim
 
 import bs4 as bs
 import urllib.request
@@ -50,13 +51,9 @@ def home():
     yo = request.args.get("input")
     #geolocalisation.recherche(yo, address)
 
-    print(yo,"addresse:",address,"                 yoooooooooooooo")
-    print(yo,address,"                 yoooooooooooooo")
-    print(yo,address,"                 yoooooooooooooo")
-    print(yo,address,"                 yoooooooooooooo")
 
-
-    return render_template("home.html",message=yo)
+    mess = address
+    return render_template("home.html",message=yo, mess = mess)
 
 @app.route('/registration', methods=["GET", "POST"])
 def registration():
@@ -64,27 +61,27 @@ def registration():
     yo = request.form['test']
     address = []
     path = "https://www.google.com/maps/search/{}".format(yo)
-    print(yo,"548498464874648")
+
     #geolocalisation.recherche(yo, address)
-    print(address)
-    print("COUCOUUUUUUUUUUUUUUUUUUU", address,"coucuuuuuuuuuu")
-    print("COUCOUUUUUUUUUUUUUUUUUUU")
-    print("COUCOUUUUUUUUUUUUUUUUUUU")
-    print("COUCOUUUUUUUUUUUUUUUUUUU")
-    print(address)
+
     roots.root()
-    return render_template("home.html", address=address)
+    message1 = ["SALUT"]
+    
+    geocoder = Nominatim()
+    location = geocoder.geocode(yo, True, 30)
+ 
+   
+    print((location.latitude, location.longitude))
+    print(location.address)
+    return render_template("home.html",message1=message1)
 
 
 @app.route('/about')
 def about():
-
-    
     return render_template("pages/about.html")
 
 
 
-        
 @app.route('/demo')
 def demo():
     return render_template("pages/demo.html")
@@ -95,10 +92,6 @@ def recup_data():
     return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
 
 
-
-
-   
-
 @app.route('/yo', methods=['GET','POST'])
 def yo():
     return render_template("pages/yo.html")
@@ -107,7 +100,7 @@ def yo():
 @app.route('/coucou', methods=['GET','POST'])
 def coucou():
     yo = request.args.get("test")
-    print(yo)
+
     return render_template("pages/coucou.html")
 
     
@@ -116,16 +109,16 @@ def page_not_found(error):
     
     return render_template("errors/404.html"), 404
 
-class roots:
-    def root():
-        yo = request.form['test']
-        address = []
-        geolocalisation.recherche(yo, address)
-        print("bite", address,"coucuuuuuuuuuu")
-
+        
 if __name__=="__main__":
     db.create_all()
     app.run(debug=True, port=3000)
-    
-
     home()
+
+    
+    
+    
+    
+    
+    
+  #ne prend pas encompte self et donc les classes GGrrrr
