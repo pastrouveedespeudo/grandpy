@@ -1,4 +1,6 @@
 # grandpy
 
-#faire la rotation du gros chat + le faire en js
+#voir si on a la droit de mettre en classe sur app.py
+
+#jpe pas téléporter la variable pcque c pas des classes.... oups
 
