@@ -23,7 +23,7 @@ db = SQLAlchemy(app)
 Bootstrap(app)
 
 
-LISTE = []
+
 
     
 class Users(db.Model):
@@ -45,14 +45,27 @@ class Echange(db.Model):
         
 @app.route('/', methods=['GET','POST'])
 def home():
-
-    print(LISTE)
-    print(LISTE)
-    print(LISTE)
-    print(LISTE)
-    print(LISTE)
-    print(LISTE)
-    print(LISTE)
+    liste_recup = [[],[],[]]
+    with open("requete.py","r") as file:
+        liste = file.read()
+    print(liste)
+    c = 0
+    for i in liste:
+        for j in i:
+            if j != "/":
+                liste_recup[c].append(i)
+            else:
+                c+=1
+                liste_recup[c].append(i)
+ 
+    print(liste_recup,"YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+    #bon stop t'as juste a trouver le "".join(liste)
+    #en js et voila
+    #les long ==> dans lapi googlemap et gg wp
+    #faire tourné le gros chat tant qu'il n'y a pas de reponse mais ca
+    #ca risque detre costo
+ 
+    
     return render_template("home.html")
 
 @app.route('/registration', methods=["GET", "POST"])
@@ -64,15 +77,22 @@ def registration():
 
     geocoder = Nominatim(user_agent="app.py")
     location = geocoder.geocode(yo, True, 30)
-    LISTE.append(yo)
+    
     print((location.latitude, location.longitude))
     print(location.address)
 
-    localisation = {"cle":location.address}
+    localisation = location.address
     localisation = str(localisation)
+    liste = [[],[]]
 
-    with open("requete.py","w") as file:
-        file.write("ta grosse race")
+    with open("requete.py","w", encoding="utf-8") as file:
+        file.write(str(location.address))
+        file.write("/")
+        file.write(str(location.latitude))
+        file.write("/")
+        file.write(str(location.longitude))
+
+        
     return render_template("home.html",localisation=localisation)
 
 
