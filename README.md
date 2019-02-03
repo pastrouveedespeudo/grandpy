@@ -1,6 +1,8 @@
 # grandpy
 
-#voir si on a la droit de mettre en classe sur app.py
+#rend tous ca dynamique beauté et finir la fonction set time des que ca recherche ca par contre....
 
-#jpe pas téléporter la variable pcque c pas des classes.... oups
+#et j'ai vu de superb image qui sarrondisse quand on passe dessus
+
+#faire un corps dynamique faire pleins de pages et commence une mini base de donnée et met ton truk 
 
