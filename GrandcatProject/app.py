@@ -6,7 +6,6 @@ import bs4 as bs
 import urllib.request
 from PIL import Image
 from flask import Flask
-from parsage import *
 from flask import request
 from flask import url_for
 from flask import jsonify
@@ -46,14 +45,15 @@ class Echange(db.Model):
         
 @app.route('/', methods=['GET','POST'])
 def home():
-  
-    address=""
-    yo = request.args.get("input")
-    #geolocalisation.recherche(yo, address)
 
-
-    mess = address
-    return render_template("home.html",message=yo, mess = mess)
+    print(LISTE)
+    print(LISTE)
+    print(LISTE)
+    print(LISTE)
+    print(LISTE)
+    print(LISTE)
+    print(LISTE)
+    return render_template("home.html")
 
 @app.route('/registration', methods=["GET", "POST"])
 def registration():
@@ -62,18 +62,18 @@ def registration():
     address = []
     path = "https://www.google.com/maps/search/{}".format(yo)
 
-    #geolocalisation.recherche(yo, address)
-
-    roots.root()
-    message1 = ["SALUT"]
-    
-    geocoder = Nominatim()
+    geocoder = Nominatim(user_agent="app.py")
     location = geocoder.geocode(yo, True, 30)
- 
-   
+    LISTE.append(yo)
     print((location.latitude, location.longitude))
     print(location.address)
-    return render_template("home.html",message1=message1)
+
+    localisation = {"cle":location.address}
+    localisation = str(localisation)
+
+    with open("requete.py","w") as file:
+        file.write("ta grosse race")
+    return render_template("home.html",localisation=localisation)
 
 
 @app.route('/about')
@@ -110,15 +110,10 @@ def page_not_found(error):
     return render_template("errors/404.html"), 404
 
         
-if __name__=="__main__":
+if __name__== "__main__":
+    
     db.create_all()
     app.run(debug=True, port=3000)
-    home()
 
-    
-    
-    
-    
-    
-    
-  #ne prend pas encompte self et donc les classes GGrrrr
+    registration()
+    home()
