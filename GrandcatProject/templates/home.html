@@ -2,6 +2,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html>
     
@@ -64,6 +65,7 @@
 
 
         .div{
+            margin-top:-200px;
             text-align:center;
             border:2px solid black;
             width: 580px;
@@ -74,20 +76,25 @@
 
 
         #map{
-            height:200px;
-            width:40%;
-        }
-
-
-
-        .chat_gauche{
-        }
-
-
         
+            height:200px;
+            width:20%;
+            margin-left:900px;
+            top:0px;
+        }
+
+
+
+        .imagemap{
+            margin-top:-200px;
+            margin-left:980px;
+        }
+
+
 
 
     </style>
+
 
 
     <head>
@@ -101,14 +108,11 @@
         <h3>Site exclusivement réservé à la recherche d'adresse</h3>
 
 
-
         <ul>
-            <li>ezaeza</li>
-            <li>ezaeza</li>
-            <li>dzdza</li>
+            <li><a href="pages/inscription.html">S'inscrire</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="pages/about.html">About</a></li>
         </ul>
-
-
 
     </head>
 
@@ -116,102 +120,81 @@
     <body>
 
 
+        <img src="/static/images/image1.jpg" class="imagemap" alt="logo"/>
         <div id="map"></div>
- 
-
-
-        <br><br><br><br>
-
-        ddzd
-        {{path}}
+      
+        
         <div class="div">
-            <div id="monCadre"></div>  
+            <div id="monCadre">fzfe</div>  
         </div>
 
+
+
+    
+
+
+     <form id="toto" name = "titi" return false;>
+
+        <input type="text" id="input" size="100" name="input"
+            placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
+
+
+             
+        <input type="submit" id="sub_input" name="sub" value="Enter"/>
+
         
+        <input type="button" id="button_input" name="bubu" value="Enter" />
+
         
-        <br/><br/>
-        
-        <div id="blockinput">
-        
-                <input type="text" id="input" size="100" name="input"
-                 placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"
-                 action="home" /><br>
-                <input type="button" value="Enter" onclick="message();" />
-           
-        </div>
-        
+
+    </form>
+
+
+    <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
 
 
 
-        
-        <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
-        <br/><br/><br/><br/><br/>
+
+
+
+
+
 
         <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
         </script>
 
     </body>
+    
 
-
-    <script src="https://code.jquery.com/jquery-3.0.0.js" crossorigin="anonymous"></script>
-    <script type = "text/javascript">
-
-
-        var height = 0;
-        var historic = []
-        
-
-
-            
-        function effacer(){
-            
-            document.getElementById("input").value = "";
-        }
-
-        function scrollbas(){
-            
-            height = document.getElementById('input').scrollHeight;
-            document.getElementById('input').scrollTo(0, height);
-        }
-
-
-
-
-
-
-
-
-        function message(){
-            
-            var recup = document.getElementById("input").value;
-            var path ="https://www.google.com/maps/search/" + recup
-            alert(path)
-
-
-            
-            historic.push(recup+"<br>");
-            document.getElementById("monCadre").innerHTML = historic.join("");
-            effacer();
-          
-        }
-
-
-        $('#input').keyup(function(e) {
-            
-           if(e.keyCode == 13) {
-            var recup = document.getElementById("input").value;
-            historic.push(recup+"<br>");
-            document.getElementById("monCadre").innerHTML = historic.join("");
-            effacer();
-            
-            
-         }
-        });
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>    <script type = "text/javascript">
 
 
     
+    var height = 0;
+    var historic = []
+
+    
+
+    $('form').on('submit',function(event){
+        event.preventDefault();
+        var a = document.getElementById("input").value;
+        $.post('/registration', {"test":a});
+        message();
+        effacer();
+
+    });
+        
+    var a = {"test":a};
+
+
+   
+
+
+
         function initMap(){
             var options = {
                 zoom:13,
@@ -221,19 +204,27 @@
         } 
          
 
-        function yo(){
-            var requete = new XMLHttpRequest();
-            requete.open("GET",url);
-            requete.reponseType = "text";
 
+
+        function message(){
+            const recup = document.getElementById("input").value;
+            var path =` https://www.google.com/maps/search/${recup}`
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre").innerHTML = historic.join("");
+            effacer();
+          
+        };
+
+
+
+
+        function effacer(){
+            document.getElementById("input").value = "";
         }
-
-
     </script>
 
 
 
-</html>
 
 
 
@@ -247,3 +238,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
