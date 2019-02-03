@@ -42,12 +42,13 @@ class Echange(db.Model):
 
 
 
+        
 @app.route('/', methods=['GET','POST'])
 def home():
   
     address=""
     yo = request.args.get("input")
-    geolocalisation.recherche(yo, address)
+    #geolocalisation.recherche(yo, address)
 
     print(yo,"addresse:",address,"                 yoooooooooooooo")
     print(yo,address,"                 yoooooooooooooo")
@@ -64,13 +65,14 @@ def registration():
     address = []
     path = "https://www.google.com/maps/search/{}".format(yo)
     print(yo,"548498464874648")
-    geolocalisation.recherche(yo, address)
+    #geolocalisation.recherche(yo, address)
     print(address)
     print("COUCOUUUUUUUUUUUUUUUUUUU", address,"coucuuuuuuuuuu")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print("COUCOUUUUUUUUUUUUUUUUUUU")
     print(address)
+    roots.root()
     return render_template("home.html", address=address)
 
 
@@ -114,11 +116,16 @@ def page_not_found(error):
     
     return render_template("errors/404.html"), 404
 
-
+class roots:
+    def root():
+        yo = request.form['test']
+        address = []
+        geolocalisation.recherche(yo, address)
+        print("bite", address,"coucuuuuuuuuuu")
 
 if __name__=="__main__":
     db.create_all()
     app.run(debug=True, port=3000)
+    
+
     home()
-
-
