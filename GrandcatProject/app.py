@@ -1,139 +1,345 @@
-import os
-import subprocess  
-from geopy.geocoders import Nominatim
-
-import bs4 as bs
-import urllib.request
-from PIL import Image
-from flask import Flask
-from flask import request
-from flask import url_for
-from flask import jsonify
-from geopy.geocoders import Nominatim
-from flask import render_template
-from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-Bootstrap(app)
+<!DOCTYPE html>
+<html>
+    
+    
+    <meta charset="utf-8" />
+    <title>GrandPY</title>
+    
+            
+    <style type="text/css">
+    
+        h1{
+            text-align:center;
+        }
+        
+        h2{
+            text-align:center;
+        }
 
 
+        .image1{
+            border="6";
+            border-radius:8px;
+        }
 
+        .menu{
+            position:relative;
+            left:2500px;
+        }
+
+        h3{
+            text-align:center;
+            font-style:italic;
+        }
+
+        .div{
+            position:relative;
+            left:275px;
+            style="width:600px;
+            height:300px;
+            border:2px solid #999999;
+            text-align:center;
+        }
+
+        form{
+            text-align:center;
+        }
+       
+        p{
+            text-align:center;
+        }
+
+        #blockinput{
+            text-align:center;
+        }
+
+        #input{
+            text-align:center;
+            font-style:italic;
+        }
+
+
+        .div{
+            margin-top:-200px;
+            text-align:center;
+            border:2px solid black;
+            width: 580px;
+            height: 300px;
+            background-color:pink;
+            overflow:scroll;
+        }
+
+
+        #map{
+        
+            height:200px;
+            width:20%;
+            margin-left:900px;
+            top:0px;
+            position: fixed
+        }
+
+
+
+        #image1{
+            margin-top:auto;
+            margin-left:910px;
+        }
+
+
+
+
+    </style>
+
+
+
+    <head>
 
     
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
+        <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
+
+           
+        <h1>HOME</h1>
+        <h2>Hey I'm GrandCat</h2>
+        <h3>Site exclusivement réservé à la recherche d'adresse</h3>
 
 
+        <ul>
+            <li><a href="pages/inscription.html">S'inscrire</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="pages/about.html">About</a></li>
+        </ul>
 
-class Echange(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    dateHeure = db.Column(db.String(80), unique=True)
-    message = db.Column(db.Text(200), unique=True)
+
+        <div id="image1"><img src="static/images/tourne/one.jpg"/></div>        
+
+        
+    </head>
+
+
+    <body>
+
+        dzad
+        <div id="output"></div>
+        dzd
+
+
+        
+       
+
+
 
 
 
 
 
         
-@app.route('/', methods=['GET','POST'])
-def home():
-    liste_recup = [[],[],[]]
-    with open("requete.py","r") as file:
-        liste = file.read()
-    print(liste)
-    c = 0
-    for i in liste:
-        for j in i:
-            if j != "/":
-                liste_recup[c].append(i)
-            else:
-                c+=1
-                liste_recup[c].append(i)
- 
-    print(liste_recup,"YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-    #bon stop t'as juste a trouver le "".join(liste)
-    #en js et voila
-    #les long ==> dans lapi googlemap et gg wp
-    #faire tourné le gros chat tant qu'il n'y a pas de reponse mais ca
-    #ca risque detre costo
- 
-    
-    return render_template("home.html")
+        {{ a }} {{ b }} {{ c }}
+        <div id="map"></div>
 
-@app.route('/registration', methods=["GET", "POST"])
-def registration():
    
-    yo = request.form['test']
-    address = []
-    path = "https://www.google.com/maps/search/{}".format(yo)
 
-    geocoder = Nominatim(user_agent="app.py")
-    location = geocoder.geocode(yo, True, 30)
-    
-    print((location.latitude, location.longitude))
-    print(location.address)
 
-    localisation = location.address
-    localisation = str(localisation)
-    liste = [[],[]]
+        <br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="div">
+        
+                        
+            <div id="monCadre"> {{ a }} {{ b }} {{ c }}</div>  
+        </div>
 
-    with open("requete.py","w", encoding="utf-8") as file:
-        file.write(str(location.address))
-        file.write("/")
-        file.write(str(location.latitude))
-        file.write("/")
-        file.write(str(location.longitude))
+       <div id="monCadre3">dedfz</div>  
+        </div>
+
+
+
+     <form id="toto" name = "titi" return false;>
+
+        <input type="text" id="input" size="100" name="input"
+            placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
+
+
+             
+        <input type="submit" id="sub_input" name="sub" value="Enter"/>
 
         
-    return render_template("home.html",localisation=localisation)
-
-
-@app.route('/about')
-def about():
-    return render_template("pages/about.html")
-
-
-
-@app.route('/demo')
-def demo():
-    return render_template("pages/demo.html")
-
-
-@app.route("/recup_data",methods=["POST"])
-def recup_data():
-    return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
-
-
-@app.route('/yo', methods=['GET','POST'])
-def yo():
-    return render_template("pages/yo.html")
-
-
-@app.route('/coucou', methods=['GET','POST'])
-def coucou():
-    yo = request.args.get("test")
-
-    return render_template("pages/coucou.html")
-
-    
-@app.errorhandler(404)
-def page_not_found(error):
-    
-    return render_template("errors/404.html"), 404
+        <input type="button" id="button_input" name="bubu" value="Enter" />
 
         
-if __name__== "__main__":
-    
-    db.create_all()
-    app.run(debug=True, port=3000)
 
-    registration()
-    home()
+    </form>
+
+
+    <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
+
+
+    
+
+
+    <div id="result"></div>  
+
+
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
+        </script>
+
+    </body>
+    
+  
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>    <script type = "text/javascript">
+
+
+    $("#output").load("/static/images/requete.txt", "requete.txt");
+
+
+    $('form').on('submit',function(event){
+        event.preventDefault();
+        var a = document.getElementById("input").value;
+        $.post('/registration', {"test":a});
+        message();
+        effacer();
+    });
+
+
+    
+    
+    var a = {"test":a};
+
+
+
+
+
+    function readFile(){
+        jQuery.get("requete.txt", function(txt){
+            $("output").text(txt);
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    $('#monCadre3').load('requete.txt');
+ 
+
+
+
+
+
+
+        
+        function image_tourne(){
+            var liste = [
+                "one.jpg",
+                "two.jpg",
+                "three.jpg",
+                "for.jpg",
+                "five.jpg"
+                ];
+        document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
+            for(var i = 0; i >= liste.length; i++){
+                
+                document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
+            };
+        };
+
+        setTimeout(image_tourne(),500);
+
+
+
+
+        function initMap(){
+            var options = {
+                zoom:13,
+                center:{lat:44.7167,lng:5.05}
+            }
+            var map = new google.maps.Map(document.getElementById("map"), options);
+        } 
+         
+
+
+        var historic = []
+        function message(){
+            const recup = document.getElementById("input").value;
+            var path =` https://www.google.com/maps/search/${recup}`;
+            historic.push(recup+"<br>");
+            document.getElementById("monCadre2").innerHTML = historic.join("");
+            effacer();
+          
+        };
+
+
+
+
+        function effacer(){
+            document.getElementById("input").value = "";
+        }
+
+
+
+
+
+
+
+        function imageTourne(){
+            document.getElementById('nom-de-ta-photo').src= "l'url de ta nouvelle image";
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
