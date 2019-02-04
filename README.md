@@ -1,11 +1,9 @@
 # grandpy
 
-#je ne peux PAS INJECTER ... je ne peux pas creer DE classe... ^^ oh merde ils vont me le refaire faire
+#ouais bah je suis b loqué depuis 1semaine ca me ronge de l'intérieur,
 
-#mais jpe ecrire dans des fichier et le recup hihihi
+#monsieur professionnele de lhtml c con ton idée hé connar tu veux voir mes fichiers ^^ pffffff
 
-#ouais mais tu savais pas home sactualiserais pas bon ben go mettre ca en json et recuper les dico avec js
+#c horrible je suis obligé de faire du json conar va c simple jte le fais en 10 minutes nik ta race
 
-#oooooooh c horrbible 
-
-#j'ai meme essayer dacker la console mdr fallait juste faire ca putin de merde
+#GGRRrrr
