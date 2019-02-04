@@ -7,3 +7,5 @@
 #ouais mais tu savais pas home sactualiserais pas bon ben go mettre ca en json et recuper les dico avec js
 
 #oooooooh c horrbible 
+
+#j'ai meme essayer dacker la console mdr fallait juste faire ca putin de merde
