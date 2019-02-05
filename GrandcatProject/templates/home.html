@@ -245,15 +245,38 @@
                          [],[],[],[],[],[],[],[],
                          [],[],[],[],[],[],[],[]]
                 
-                var a = document.getElementById("monCadre");
-                var b = a.innerText || a.textContent;
-                console.log(b.length)
+                liste2 = []
+                
+                var c = document.getElementById("monCadre");
+                var a = c.innerText || c.textContent;
+                var b = a.length;
+                console.log(a)
+                
+                var c = 0;
+
+                for(var i = 0; i<=b;i++){
+                          liste[c].push(a[i]);
+                          if(a[i] === ","){
+                            c++;
+                          };
+                        };
+
+                for(var i =0;i<=liste.length;i++){
+                    if(liste[i]!=""){
+                        liste2.push(liste[i]);
+                    }
+                 }
+
+                a = Number(liste2[liste2.length -3].slice(0,-1).join(''))
+                b = Number(liste2[liste2.length -2].slice(0,-1).join(''))
+
+                console.log(a)
                 console.log(b)
-                liste.push(b)
-                console.log(liste)
+            
+
                 var options = {
                     zoom:13,
-                    center:{lat:44.7167,lng:5.05}
+                    center:{lat:a,lng:b}
                 }
                 var map = new google.maps.Map(document.getElementById("map"), options);
             } 
@@ -263,50 +286,38 @@
     
    
 
+     
 
 
-        var a = "coucou, coucou,coezu, ojupoj"
-        var b = a.length
-        liste = [[],[],[],[],[],[],[],[],
-                [],[],[],[],[],[],[],[],
-                [],[],[],[],[],[],[],[]]
-
-        var c = 0
-        for(var i = 0; i<=b;i++){
-          liste[c].push(a[i]);
-          
-         
-          if(a[i] === ","){
-            c++
-
-          }
-         
-        }
-
-        liste2 = []
-
-        for(var i =0;i<=liste.length;i++){
-          if(liste[i]!=""){
-            liste2.push(liste[i]);
-          }
-        }
-
-        console.log(liste2)
+      
+            
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
-        for(var i= 0; i <=liste2.length;i++){
-            console.log(liste2[i])
-            for(var j =0; j <= liste2[i].length; j++)
-            console.log(liste2[i][j])
-            if(liste2[i][j] !== ","){
-              console.log(liste2[i][j])
-            }
-          
 
-        }
 
-	#Trouve un autre truk va gouter
+
 
 
 
