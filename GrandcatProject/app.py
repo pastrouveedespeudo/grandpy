@@ -1,345 +1,154 @@
-<!DOCTYPE html>
-<html>
-    
-    
-    <meta charset="utf-8" />
-    <title>GrandPY</title>
-    
-            
-    <style type="text/css">
-    
-        h1{
-            text-align:center;
-        }
-        
-        h2{
-            text-align:center;
-        }
+import os
+import subprocess  
+from geopy.geocoders import Nominatim
+import request
+import bs4 as bs
+import urllib.request
+from PIL import Image
+from flask import Flask
+from flask import request
+from flask import url_for
+from flask import jsonify
+from geopy.geocoders import Nominatim
+from flask import render_template
+from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 
+app = Flask(__name__)
 
-        .image1{
-            border="6";
-            border-radius:8px;
-        }
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/db.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-        .menu{
-            position:relative;
-            left:2500px;
-        }
-
-        h3{
-            text-align:center;
-            font-style:italic;
-        }
-
-        .div{
-            position:relative;
-            left:275px;
-            style="width:600px;
-            height:300px;
-            border:2px solid #999999;
-            text-align:center;
-        }
-
-        form{
-            text-align:center;
-        }
-       
-        p{
-            text-align:center;
-        }
-
-        #blockinput{
-            text-align:center;
-        }
-
-        #input{
-            text-align:center;
-            font-style:italic;
-        }
-
-
-        .div{
-            margin-top:-200px;
-            text-align:center;
-            border:2px solid black;
-            width: 580px;
-            height: 300px;
-            background-color:pink;
-            overflow:scroll;
-        }
-
-
-        #map{
-        
-            height:200px;
-            width:20%;
-            margin-left:900px;
-            top:0px;
-            position: fixed
-        }
+Bootstrap(app)
 
 
 
-        #image1{
-            margin-top:auto;
-            margin-left:910px;
-        }
-
-
-
-
-    </style>
-
-
-
-    <head>
 
     
-        <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
-
-           
-        <h1>HOME</h1>
-        <h2>Hey I'm GrandCat</h2>
-        <h3>Site exclusivement réservé à la recherche d'adresse</h3>
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
 
 
-        <ul>
-            <li><a href="pages/inscription.html">S'inscrire</a></li>
-            <li><a href="pages/contact.html">Contact</a></li>
-            <li><a href="pages/about.html">About</a></li>
-        </ul>
 
-
-        <div id="image1"><img src="static/images/tourne/one.jpg"/></div>        
-
-        
-    </head>
-
-
-    <body>
-
-        dzad
-        <div id="output"></div>
-        dzd
-
-
-        
-       
-
-
+class Echange(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    dateHeure = db.Column(db.String(80), unique=True)
+    message = db.Column(db.Text(200), unique=True)
 
 
 
 
 
         
-        {{ a }} {{ b }} {{ c }}
-        <div id="map"></div>
+@app.route('/')
+def home():
+    """Here we just display home page"""
+    return render_template("home.html")
 
-   
+def searching(parametre):
+    """Here we searching from Python modul(geopy.geocoders)"""
+    """address from the input from html page"""
+    
+    geocoder = Nominatim(user_agent="app.py")
+    #parametre is data recup from data()
+    
+    location = geocoder.geocode(parametre, True, 30)
+    localisation = location.address
+    localisation = str(localisation)
+
+    #define data from geopy.geocoders into var
+    a = location.address
+    b = location.latitude
+    c = location.longitude
+
+    #we stoking it into variable and return it
+    return a, b, c
 
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <div class="div">
+@app.route('/data', methods=["POST"])
+def data():
+    """Here, we just recup data with request form"""
+    """from jquerry function() who define content from input"""
+    data = request.form['data']
+    
+    if data :
+        #we take arg from data (recup input stuff u know bia calm
+        #we stoking variables into var variable
+        var = searching(data)
+        return jsonify({'data':var})
+
+    return jsonify({'error':'...'})
+
+
+
+
+
+@app.route('/registration', methods=["GET", "POST"])
+def registration():
+    """This function can be couple to database"""
+    """for eventually account"""
+    #faudra mettre <name> ca dit coucou le nom
+    return render_template("home.html")
+
         
-                        
-            <div id="monCadre"> {{ a }} {{ b }} {{ c }}</div>  
-        </div>
-
-       <div id="monCadre3">dedfz</div>  
-        </div>
+@app.route('/demo')
+def demo():
+     #accueil
+     return render_template("pages/demo.html")
 
 
+@app.route('/about', methods=["POST"])
+def about():
+    email = request.form['email']
+    name = request.form['name']
+    
 
-     <form id="toto" name = "titi" return false;>
-
-        <input type="text" id="input" size="100" name="input"
-            placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
-
-
-             
-        <input type="submit" id="sub_input" name="sub" value="Enter"/>
-
-        
-        <input type="button" id="button_input" name="bubu" value="Enter" />
-
-        
-
-    </form>
-
-
-    <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
+    if name:
+        name = name
+        jo = "coucou"
+        return jsonify({'name':name+ " " +jo})
 
 
     
-
-
-    <div id="result"></div>  
-
-
-
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
-        </script>
-
-    </body>
     
-  
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>    <script type = "text/javascript">
-
-
-    $("#output").load("/static/images/requete.txt", "requete.txt");
-
-
-    $('form').on('submit',function(event){
-        event.preventDefault();
-        var a = document.getElementById("input").value;
-        $.post('/registration', {"test":a});
-        message();
-        effacer();
-    });
-
-
-    
-    
-    var a = {"test":a};
-
-
-
-
-
-    function readFile(){
-        jQuery.get("requete.txt", function(txt){
-            $("output").text(txt);
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-    $('#monCadre3').load('requete.txt');
+    return jsonify({'error':'Missing data!'})
  
+    
 
 
+@app.route("/recup_data",methods=["POST"])
+def recup_data():
+    return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
 
 
+@app.route('/yo', methods=['GET','POST'])
+def yo():
+    return render_template("pages/yo.html")
 
 
-        
-        function image_tourne(){
-            var liste = [
-                "one.jpg",
-                "two.jpg",
-                "three.jpg",
-                "for.jpg",
-                "five.jpg"
-                ];
-        document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-            for(var i = 0; i >= liste.length; i++){
-                
-                document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-            };
-        };
+@app.route('/coucou', methods=['GET','POST'])
+def coucou():
+    yo = request.args.get("test")
 
-        setTimeout(image_tourne(),500);
-
-
-
-
-        function initMap(){
-            var options = {
-                zoom:13,
-                center:{lat:44.7167,lng:5.05}
-            }
-            var map = new google.maps.Map(document.getElementById("map"), options);
-        } 
-         
-
-
-        var historic = []
-        function message(){
-            const recup = document.getElementById("input").value;
-            var path =` https://www.google.com/maps/search/${recup}`;
-            historic.push(recup+"<br>");
-            document.getElementById("monCadre2").innerHTML = historic.join("");
-            effacer();
-          
-        };
-
-
-
-
-        function effacer(){
-            document.getElementById("input").value = "";
-        }
-
-
-
-
-
-
-
-        function imageTourne(){
-            document.getElementById('nom-de-ta-photo').src= "l'url de ta nouvelle image";
-        }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render_template("pages/coucou.html")
 
     
+@app.errorhandler(404)
+def page_not_found(error):
+    
+    return render_template("errors/404.html"), 404
+
+
+if __name__== "__main__":
+    
+    db.create_all()
+    app.run(debug=True, port=3000)
+
+
+
+    home()
+     
+
