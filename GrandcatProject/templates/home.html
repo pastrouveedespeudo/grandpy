@@ -1,8 +1,5 @@
 
 
-
-
-
 <!DOCTYPE html>
 <html>
     
@@ -81,13 +78,14 @@
             width:20%;
             margin-left:900px;
             top:0px;
+            position: fixed
         }
 
 
 
-        .imagemap{
-            margin-top:-200px;
-            margin-left:980px;
+        #image1{
+            margin-top:auto;
+            margin-left:910px;
         }
 
 
@@ -99,7 +97,20 @@
 
     <head>
 
-    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
+        </script>
+
+
+
         <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
 
            
@@ -114,113 +125,198 @@
             <li><a href="pages/about.html">About</a></li>
         </ul>
 
+
+        <div id="image1"><img src="static/images/tourne/one.jpg"/></div>        
+
+        
     </head>
 
 
     <body>
 
-
-        <img src="/static/images/image1.jpg" class="imagemap" alt="logo"/>
+        
         <div id="map"></div>
+
+        <div id="monCadre">dza</div>
+        <div id="monCadre1">dza</div>
+        <div id="monCadre2">dza</div>
+
+        //tout regrouper dans une var = []
+
+        
+        <div id="monCadreAlert"></div>  
       
-        
-        <div class="div">
-            <div id="monCadre">fzfe</div>  
-        </div>
+
+        <form>
+
+            <input type="text" class="classRecupInfo" id="idRecupInfo" size="100" 
+                placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
+
+      
+            <input type="submit" class="classButtonInput" id="idButtonInput" value="Enter"/>
+
+
+        </form>
 
 
 
-    
+        <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
 
 
-     <form id="toto" name = "titi" return false;>
-
-        <input type="text" id="input" size="100" name="input"
-            placeholder="Salut GrandPy ! Est-ce que tu connais l'adresse d'OpenClassrooms ?"/><br>
-
-
-             
-        <input type="submit" id="sub_input" name="sub" value="Enter"/>
-
-        
-        <input type="button" id="button_input" name="bubu" value="Enter" />
-
-        
-
-    </form>
-
-
-    <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
-
-
-
-
-
-
-
-
-
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
-        </script>
 
     </body>
+
+    <script type = "text/javascript">
     
 
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>    <script type = "text/javascript">
+        $(document).ready(function(){
+
+            $("form").on("submit", function(e){
+
+                $.ajax({
+                    data:{
+                        data:$("#idRecupInfo").val(),
+
+                    },
+                    type:"POST",
+                    url:"/data"
+
+                })
+                .done(function(data){
+
+                    if (data.error){
+                        $("#monCadreAlert").text(data.error).show();
+                        $("#monCadre").hide();
+                    }
+                    else{
+                        $("#monCadre").text(data.data).show();
+                        $("#monCadre1").text(data.data).show();
+                        $("#monCadre2").text(data.data).show();
+                        
+                        $("#monCadreAlert").hide();
+                    }
+
+
+
+                });
+
+
+
+
+                
+                e.preventDefault();
+                
+            });
+        });
+
+
 
 
     
-    var height = 0;
-    var historic = []
 
-    
 
-    $('form').on('submit',function(event){
-        event.preventDefault();
-        var a = document.getElementById("input").value;
-        $.post('/registration', {"test":a});
-        message();
-        effacer();
 
-    });
         
-    var a = {"test":a};
-
-
-   
-
-
-
-        function initMap(){
-            var options = {
-                zoom:13,
-                center:{lat:44.7167,lng:5.05}
-            }
-            var map = new google.maps.Map(document.getElementById("map"), options);
-        } 
-         
-
-
-
-        function message(){
-            const recup = document.getElementById("input").value;
-            var path =` https://www.google.com/maps/search/${recup}`
-            historic.push(recup+"<br>");
-            document.getElementById("monCadre").innerHTML = historic.join("");
-            effacer();
-          
-        };
+        
+        var a = {"test":a};
 
 
 
 
-        function effacer(){
-            document.getElementById("input").value = "";
+
+        function readFile(){
+            jQuery.get("requete.txt", function(txt){
+                $("output").text(txt);
+            });
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        $('#monCadre3').load('requete.txt');
+     
+
+
+
+
+
+
+            
+            function image_tourne(){
+                var liste = [
+                    "one.jpg",
+                    "two.jpg",
+                    "three.jpg",
+                    "for.jpg",
+                    "five.jpg"
+                    ];
+            document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
+                for(var i = 0; i >= liste.length; i++){
+                    
+                    document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
+                };
+            };
+
+            setTimeout(image_tourne(),500);
+
+
+
+
+            function initMap(){
+                var options = {
+                    zoom:13,
+                    center:{lat:44.7167,lng:5.05}
+                }
+                var map = new google.maps.Map(document.getElementById("map"), options);
+            } 
+             
+
+
+            var historic = []
+            function message(){
+                const recup = document.getElementById("input").value;
+                var path =` https://www.google.com/maps/search/${recup}`;
+                historic.push(recup+"<br>");
+                document.getElementById("monCadre2").innerHTML = historic.join("");
+                effacer();
+              
+            };
+
+
+
+
+            function effacer(){
+                document.getElementById("input").value = "";
+            }
+
+
+
+
+
+
+
+            function imageTourne(){
+                document.getElementById('nom-de-ta-photo').src= "l'url de ta nouvelle image";
+            }
     </script>
 
 
