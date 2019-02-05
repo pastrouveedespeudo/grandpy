@@ -68,14 +68,53 @@ def searching(parametre):
     return a, b, c
 
 
+def parsing_texte(data):
+    
+    
+    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse de"
+    a =str(data).find(str(phrase_accroche))
+    if a >= 0 :
+       
+        liste = []
+        data = "Salut GrandPY ! Est-ce que tu connais l'adresse de aouste"
+        if data == "Salut GrandPY ! Est-ce que tu connais l'adresse de aouste":
+            liste.append(data)
+
+        c=0
+        liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        for i in liste:
+            for j in i :
+                liste2[c].append(j)
+                if j == " ":
+                    c+=1
+
+        c=0
+        for i in liste2:
+            if i == "" or i == [] :
+               pass
+            else:
+                c+=1
+        liste2 = liste2[0:c]
+        dataa = "".join(liste2[-1])
+        print(dataa)
+                
+    elif a <= 0:
+        pass
+    #ici on va faire le bot
+
+    else:
+        pass
+    #sois y'a rien et on envoie erreur soit chais pas
+
+
 @app.route('/data', methods=["POST"])
 def data():
     """Here, we just recup data with request form"""
     """from jquerry function() who define content from input"""
     data = request.form['data']
-    
+    print(data)
     if data :
-        #we take arg from data (recup input stuff u know bia calm
+        #we take arg from data (recup input stuff u know bia calm)
         #we stoking variables into var variable
         var = searching(data)
         return jsonify({'data':var})
