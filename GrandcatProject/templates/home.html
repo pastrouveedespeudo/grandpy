@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html>
     
@@ -67,7 +68,7 @@
             border:2px solid black;
             width: 580px;
             height: 300px;
-            background-color:pink;
+            background-color:green;
             overflow:scroll;
         }
 
@@ -127,7 +128,7 @@
         </ul>
 
 
-        <div id="image1"><img src="static/images/tourne/one.jpg"/></div>        
+        <div id="image1"><img src="static/images/tourne/five.jpg"/></div>        
 
         
     </head>
@@ -142,7 +143,7 @@
             <div id="monCadre"></div>
         </div>
         
-        //tout regrouper dans une var = []
+ 
 
         
         <div id="monCadreAlert"></div>  
@@ -198,7 +199,7 @@
 
 
                 });
-         
+                message();
                 effacer();
                 e.preventDefault();
                 
@@ -207,132 +208,114 @@
 
 
 
-        
         function effacer(){
             document.getElementById("idRecupInfo").value = "";
         }
 
-    
+        HISTORIC = []
+        function message(){
+            var a = document.getElementById("idRecupInfo").value;
+            HISTORIC.push(a);
+            console.log(HISTORIC);
+        }
+        
+        HISTORIC2 = []
+        function catch_monCadre(){
+            var a = document.getElementById("monCadre").value;
+            HISTORIC.push(a);
+            console.log(HISTORIC2);
+        }
+
+
+        function add_database(){
+
+        //ajouter favoris
+        }
+
+
+        function
 
 
 
 
 
-
-            function image_tourne(){
-                var liste = [
-                    "one.jpg",
-                    "two.jpg",
-                    "three.jpg",
-                    "for.jpg",
-                    "five.jpg"
-                    ];
-            document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-                for(var i = 0; i >= liste.length; i++){
-                    
-                    document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-                };
+        function image_tourne(){
+            var liste = [
+                "one.jpg",
+                "two.jpg",
+                "three.jpg",
+                "for.jpg",
+                "five.jpg"
+                ];
+            
+        document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
+            for(var i = 0; i >= liste.length; i++){
+                
+                document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
             };
+        };
 
-            setTimeout(image_tourne(),500);
+        setTimeout(image_tourne(),500);
 
 
 
 
-            function initMap(){
-                
-                liste = [[],[],[],[],[],[],[],[],
-                         [],[],[],[],[],[],[],[],
-                         [],[],[],[],[],[],[],[]]
-                
-                liste2 = []
-                
-                var c = document.getElementById("monCadre");
-                var a = c.innerText || c.textContent;
-                var b = a.length;
-                console.log(a)
-                
-                var c = 0;
-
-                for(var i = 0; i<=b;i++){
-                          liste[c].push(a[i]);
-                          if(a[i] === ","){
-                            c++;
-                          };
-                        };
-
-                for(var i =0;i<=liste.length;i++){
-                    if(liste[i]!=""){
-                        liste2.push(liste[i]);
-                    }
-                 }
-
-                a = Number(liste2[liste2.length -3].slice(0,-1).join(''))
-                b = Number(liste2[liste2.length -2].slice(0,-1).join(''))
-
-                console.log(a)
-                console.log(b)
+        function initMap(){
             
+            liste = [[],[],[],[],[],[],[],[],
+                     [],[],[],[],[],[],[],[],
+                     [],[],[],[],[],[],[],[]]
+            
+            liste2 = []
+            
+            var c = document.getElementById("monCadre");
+            var a = c.innerText || c.textContent;
+            var b = a.length;
+            console.log(a)
+            
+            var c = 0;
 
-                var options = {
-                    zoom:13,
-                    center:{lat:a,lng:b}
+            for(var i = 0; i<=b;i++){
+                      liste[c].push(a[i]);
+                      if(a[i] === ","){
+                        c++;
+                      };
+                    };
+
+            for(var i =0;i<=liste.length;i++){
+                if(liste[i]!=""){
+                    liste2.push(liste[i]);
                 }
-                var map = new google.maps.Map(document.getElementById("map"), options);
-            } 
-             
+             };
 
+            a = Number(liste2[liste2.length -3].slice(0,-1).join(''));
+            b = Number(liste2[liste2.length -2].slice(0,-1).join(''));
 
-    
-   
-
-     
-
-
-      
-            
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+            console.log(a)
+            console.log(b)
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            function imageTourne(){
-                document.getElementById('nom-de-ta-photo').src= "l'url de ta nouvelle image";
+            var options = {
+                zoom:13,
+                center:{lat:a,lng:b}
             }
+            var map = new google.maps.Map(document.getElementById("map"), options);
+        } 
+         
+
+
+
+        function imageTourne(){
+            document.getElementById('nom-de-ta-photo').src= "l'url de ta nouvelle image";
+        }
+
+
+
+
+
+
+
+            
     </script>
 
 
