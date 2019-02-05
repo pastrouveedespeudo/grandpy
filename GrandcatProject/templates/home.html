@@ -55,7 +55,7 @@
             text-align:center;
         }
 
-        #input{
+        .classRecupInfo{
             text-align:center;
             font-style:italic;
         }
@@ -91,6 +91,7 @@
 
 
 
+
     </style>
 
 
@@ -113,7 +114,7 @@
 
         <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
 
-           
+  
         <h1>HOME</h1>
         <h2>Hey I'm GrandCat</h2>
         <h3>Site exclusivement réservé à la recherche d'adresse</h3>
@@ -136,11 +137,11 @@
 
         
         <div id="map"></div>
-
-        <div id="monCadre">dza</div>
-        <div id="monCadre1">dza</div>
-        <div id="monCadre2">dza</div>
-
+        
+        <div class="div" id="id">
+            <div id="monCadre"></div>
+        </div>
+        
         //tout regrouper dans une var = []
 
         
@@ -190,20 +191,15 @@
                     }
                     else{
                         $("#monCadre").text(data.data).show();
-                        $("#monCadre1").text(data.data).show();
-                        $("#monCadre2").text(data.data).show();
-                        
                         $("#monCadreAlert").hide();
+                        initMap();
+                        
                     }
 
 
-
                 });
-
-
-
-
-                
+         
+                effacer();
                 e.preventDefault();
                 
             });
@@ -211,56 +207,18 @@
 
 
 
+        
+        function effacer(){
+            document.getElementById("idRecupInfo").value = "";
+        }
 
     
 
 
 
-        
-        
-        var a = {"test":a};
 
 
 
-
-
-        function readFile(){
-            jQuery.get("requete.txt", function(txt){
-                $("output").text(txt);
-            });
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-        $('#monCadre3').load('requete.txt');
-     
-
-
-
-
-
-
-            
             function image_tourne(){
                 var liste = [
                     "one.jpg",
@@ -282,6 +240,17 @@
 
 
             function initMap(){
+                
+                liste = [[],[],[],[],[],[],[],[],
+                         [],[],[],[],[],[],[],[],
+                         [],[],[],[],[],[],[],[]]
+                
+                var a = document.getElementById("monCadre");
+                var b = a.innerText || a.textContent;
+                console.log(b.length)
+                console.log(b)
+                liste.push(b)
+                console.log(liste)
                 var options = {
                     zoom:13,
                     center:{lat:44.7167,lng:5.05}
@@ -291,22 +260,58 @@
              
 
 
-            var historic = []
-            function message(){
-                const recup = document.getElementById("input").value;
-                var path =` https://www.google.com/maps/search/${recup}`;
-                historic.push(recup+"<br>");
-                document.getElementById("monCadre2").innerHTML = historic.join("");
-                effacer();
-              
-            };
+    
+   
 
 
 
+        var a = "coucou, coucou,coezu, ojupoj"
+        var b = a.length
+        liste = [[],[],[],[],[],[],[],[],
+                [],[],[],[],[],[],[],[],
+                [],[],[],[],[],[],[],[]]
 
-            function effacer(){
-                document.getElementById("input").value = "";
+        var c = 0
+        for(var i = 0; i<=b;i++){
+          liste[c].push(a[i]);
+          
+         
+          if(a[i] === ","){
+            c++
+
+          }
+         
+        }
+
+        liste2 = []
+
+        for(var i =0;i<=liste.length;i++){
+          if(liste[i]!=""){
+            liste2.push(liste[i]);
+          }
+        }
+
+        console.log(liste2)
+
+
+
+        for(var i= 0; i <=liste2.length;i++){
+            console.log(liste2[i])
+            for(var j =0; j <= liste2[i].length; j++)
+            console.log(liste2[i][j])
+            if(liste2[i][j] !== ","){
+              console.log(liste2[i][j])
             }
+          
+
+        }
+
+	#Trouve un autre truk va gouter
+
+
+
+
+
 
 
 
