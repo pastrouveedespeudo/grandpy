@@ -69,19 +69,21 @@ def searching(parametre):
 
 
 def parsing_texte(data):
+    """Here we'll go to parsing data"""
+    """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
+    """we juste take the last word from the sentece"""
     
+    liste = []
+    liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
+
     
     phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse de"
     a =str(data).find(str(phrase_accroche))
     if a >= 0 :
        
-        liste = []
-        data = "Salut GrandPY ! Est-ce que tu connais l'adresse de aouste"
-        if data == "Salut GrandPY ! Est-ce que tu connais l'adresse de aouste":
-            liste.append(data)
+        liste.append(data)
 
         c=0
-        liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
         for i in liste:
             for j in i :
                 liste2[c].append(j)
@@ -97,7 +99,8 @@ def parsing_texte(data):
         liste2 = liste2[0:c]
         dataa = "".join(liste2[-1])
         print(dataa)
-                
+
+
     elif a <= 0:
         pass
     #ici on va faire le bot
@@ -105,6 +108,14 @@ def parsing_texte(data):
     else:
         pass
     #sois y'a rien et on envoie erreur soit chais pas
+
+def search_wikipedia():
+    pass
+
+
+def search_picture():
+    pass
+
 
 
 @app.route('/data', methods=["POST"])
