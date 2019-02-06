@@ -16,7 +16,7 @@
  
 - database.......................................................................plus que la fonction js/jquerry
 
-- tuto ia js (comme ca tu verras ce qu'est une vraie ia mais pas obligatoire)................on peut le faire en python
+- tuto ia js (comme ca tu verras ce qu'est une vraie ia mais pas obligatoire)................LE BUT LE FAIRE EN JS et comprendre en python conar
 
 - et une autre page avec ton truk et donc use cgi
 
