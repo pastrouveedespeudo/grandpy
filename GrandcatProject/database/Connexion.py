@@ -11,8 +11,8 @@ class Mysql_connexion:
         """We creating database pur_beurre"""
 
         self.connexion = mysql.connector.connect(host=HOST,
-                                                 user=USER,
-                                                 password=PASSWORD)
+                                                 user=USER)
+                                                 
 
         self.cursor = self.connexion.cursor()
 
@@ -21,24 +21,11 @@ class Mysql_connexion:
         self.cursor.execute("""
         CREATE DATABASE grandpy""")
  
-        
-        sql =("""
-        CREATE USER %s@'localhost' IDENTIFIED BY %s""")
-        values = (USER1, PASSWORD)
-        
-        self.cursor.execute(sql, values)
-
-        
-        sql1 = ("""GRANT ALL PRIVILEGES ON {}.* TO {}@'localhost'""".format(DATABASE, USER1))
-
-        self.cursor.execute(sql1)
-        
     def connexion(self):
         """We establish connexion with database with jbaw users"""
 
         self.connexion = mysql.connector.connect(host=HOST,
-                                                 user=USER1,
-                                                 password=PASSWORD,
+                                                 user=USER,
                                                  database=DATABASE)
         self.cursor = self.connexion.cursor()
 
