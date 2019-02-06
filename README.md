@@ -6,7 +6,7 @@
 
 - faire tourner le logo
 
-- ah ca grr que le texte se cumule dans le cadre
+- ah ca grr que le texte se cumule dans le cadre ............................................. ok .text/.html
 
 - faire d'autre page
 
@@ -14,9 +14,9 @@
 
 - j'aime bien les souris avec des étoiles quand tu bouges
  
-- database
+- database.......................................................................plus que la fonction js/jquerry
 
-- tuto ia js (comme ca tu verras ce qu'est une vraie ia mais pas obligatoire)
+- tuto ia js (comme ca tu verras ce qu'est une vraie ia mais pas obligatoire)................on peut le faire en python
 
 - et une autre page avec ton truk et donc use cgi
 
