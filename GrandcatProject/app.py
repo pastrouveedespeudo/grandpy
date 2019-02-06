@@ -2,7 +2,7 @@ import os
 import subprocess  
 from geopy.geocoders import Nominatim
 import request
-import bs4 as bs
+import bs4 as BeautifulSoup
 import urllib.request
 from PIL import Image
 from flask import Flask
@@ -15,7 +15,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import mysql.connector
-
+import requests
 
 
 
@@ -30,7 +30,7 @@ Bootstrap(app)
 
 LISTE = []
 LISTE_PHRASE = []
-
+LISTE_WIKI = []
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
@@ -95,10 +95,53 @@ def parsing_texte(data):
 
 
 
-
-
-def search_wikipedia():
+def parsing_texte_wiki():
     pass
+
+def search_wikipedia(data):
+    
+    liste = []
+    liste2 = []
+    liste3 = []
+    LISTE_WIKI = []
+    
+    path = "https://fr.wikipedia.org/wiki/{}".format(data)
+
+    one = "Vous pouvez partager vos connaissances en"
+    two = "Géolocalisation"
+    three = " sur un des projets-frères de Wikipédia"
+    
+    requete = requests.get(path)
+    page = requete.content
+    soup = BeautifulSoup(page, "html.parser")
+    
+    propriete = soup.find_all("p")
+    for i in propriete:
+        liste.append(i.get_text())
+
+    c = 0
+    for i in liste:
+        c+=1
+        
+        a = str(i).find(one)
+        b = str(i).find(two)
+        c = str(i).find(three)
+      
+        if a >= 0 or b >= 0 or c >= 0:
+            pass
+        else:
+            liste2.append(i)
+
+    
+    for i in liste2:
+        for j in i:
+            if j == "\n":
+                pass
+            else:
+                liste3.append(j)
+
+    liste3 = "".join(liste3)
+    LISTE_WIKI.append(liste3)
 
 
 def search_picture(phrase, liste1):
