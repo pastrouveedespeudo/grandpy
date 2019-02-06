@@ -24,30 +24,6 @@ Bootstrap(app)
 
 
 
-
-    
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-
-
-
-class Echange(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    dateHeure = db.Column(db.String(80), unique=True)
-    message = db.Column(db.Text(200), unique=True)
-
-
-
-
-
-        
-@app.route('/')
-def home():
-    """Here we just display home page"""
-    return render_template("home.html")
-
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
@@ -109,6 +85,34 @@ def parsing_texte(data):
         pass
     #sois y'a rien et on envoie erreur soit chais pas
 
+
+    
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
+
+
+
+class Echange(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    dateHeure = db.Column(db.String(80), unique=True)
+    message = db.Column(db.Text(200), unique=True)
+
+
+
+
+
+        
+@app.route('/')
+def home():
+    """Here we just display home page"""
+
+    title_page = "HOME"
+    return render_template("home.html",title_page=title_page)
+
+
+
 def search_wikipedia():
     pass
 
@@ -144,10 +148,31 @@ def registration():
     return render_template("home.html")
 
         
-@app.route('/demo')
-def demo():
+@app.route('/login')
+def login():
      #accueil
-     return render_template("pages/demo.html")
+     return render_template("pages/login.html")
+
+
+
+@app.route('/inscription')
+def inscription():
+    title_page = "INSCRIPTION"
+    return render_template("pages/inscription.html", title_page=title_page)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route('/about', methods=["POST"])
@@ -175,15 +200,11 @@ def recup_data():
 
 
 @app.route('/yo', methods=['GET','POST'])
-def yo():
+def contact():
     return render_template("pages/yo.html")
 
 
-@app.route('/coucou', methods=['GET','POST'])
-def coucou():
-    yo = request.args.get("test")
 
-    return render_template("pages/coucou.html")
 
     
 @app.errorhandler(404)
