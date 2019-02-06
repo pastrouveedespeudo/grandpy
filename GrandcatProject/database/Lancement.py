@@ -19,7 +19,6 @@ class Lunching:
 
         self.connexion = mysql.connector.connect(host=HOST,
                                                  user=USER,
-                                                 password=PASSWORD,
                                                  database=DATABASE)
         self.cursor = self.connexion.cursor()
 
@@ -35,7 +34,7 @@ class Lunching:
     def tables(self):
         """We creating Mysql tables"""
 
-        Creation_tables.echange(self)
+        table.create_table_message(self)
 
 
         print("Tables crées")
