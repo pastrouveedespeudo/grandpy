@@ -61,7 +61,7 @@ def parsing_texte(data):
 
     
     phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse de"
-    a =str(data).find(str(phrase_accroche))
+    a = str(data).find(str(phrase_accroche))
     if a >= 0 :
        
         liste.append(data)
@@ -142,6 +142,7 @@ def data():
 
     date = datetime.now()
     date = str(date)
+    
     LISTE.append("<div style='font-style:italic;'>A {}</div>".format(date))
 
     LISTE.append("<div><strong>Votre question: </strong></div>")
@@ -150,8 +151,10 @@ def data():
     
 
     if data :
+        print(data,"YOOOOOOOOOOOOOOOOOOOOOOO")
         #we take arg from data (recup input stuff u know bia calm)
         #we stoking variables into var variable
+        
         var = searching(data)
         
         LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
@@ -163,6 +166,17 @@ def data():
     return jsonify({'error':'...'})
 
 
+@app.route('/login', methods=["POST"])
+def login():
+    
+    data = request.form['data']
+    if data:
+        
+        bienvenu = "<h1>Bienvenu {} !! le mettre dans une bulle a coté du chat </h1>".format(data)
+
+        return jsonify({'data':bienvenu})
+
+    return jsonify({'error':'...'})
 
 
 
@@ -174,10 +188,7 @@ def registration():
     return render_template("home.html")
 
         
-@app.route('/login')
-def login():
-     #accueil
-     return render_template("pages/login.html")
+
 
 
 
