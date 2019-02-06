@@ -13,6 +13,11 @@ from geopy.geocoders import Nominatim
 from flask import render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+import mysql.connector
+
+
+
 
 app = Flask(__name__)
 
@@ -22,6 +27,8 @@ db = SQLAlchemy(app)
 
 Bootstrap(app)
 
+
+LISTE = []
 
 
 def searching(parametre):
@@ -126,13 +133,32 @@ def search_picture():
 def data():
     """Here, we just recup data with request form"""
     """from jquerry function() who define content from input"""
+
+   
+    
     data = request.form['data']
-    print(data)
+ 
+
+
+    date = datetime.now()
+    date = str(date)
+    LISTE.append("<div style='font-style:italic;'>A {}</div>".format(date))
+
+    LISTE.append("<div><strong>Votre question: </strong></div>")
+    LISTE.append("<div style='font-style:italic'>{}</div>".format(data))
+    
+    
+
     if data :
         #we take arg from data (recup input stuff u know bia calm)
         #we stoking variables into var variable
         var = searching(data)
-        return jsonify({'data':var})
+        
+        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
+        LISTE.append("<div><strong>{}</strong></div>".format(var))
+        LISTE.append("<br>")
+        
+        return jsonify({'data':LISTE})
 
     return jsonify({'error':'...'})
 
