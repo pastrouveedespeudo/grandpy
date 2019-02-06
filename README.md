@@ -26,6 +26,8 @@
 
 - bien faire la mis en page(truk reponsive + tableau page)
 
+- mettre le texte qui apparait dans des bulles
 
+- faire le debut de tchat bot que politesse debut convers
 
 - et si on te demande pk t'as pas utilisé les api tu dis jvoualis teste une autre technique mais je sais faire ! mais c grave cool ^^
