@@ -29,7 +29,7 @@ Bootstrap(app)
 
 
 LISTE = []
-
+LISTE_PHRASE = []
 
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
@@ -81,8 +81,9 @@ def parsing_texte(data):
                 c+=1
         liste2 = liste2[0:c]
         dataa = "".join(liste2[-1])
+        LISTE_PHRASE.append(dataa)
         print(dataa)
-
+        
 
     elif a <= 0:
         pass
@@ -91,6 +92,52 @@ def parsing_texte(data):
     else:
         pass
     #sois y'a rien et on envoie erreur soit chais pas
+
+
+
+
+
+def search_wikipedia():
+    pass
+
+
+def search_picture(phrase, liste1):
+
+    self.phrase = phrase
+
+    liste = []
+    self.liste1 = liste1
+    
+    path =  "https://www.google.co.in/search?q={0}&source=lnms&tbm=isch"
+    path1 = path.format(self.phrase)
+    requete = requests.get(path1)
+    page = requete.content
+    soup = BeautifulSoup(page, "html.parser")  
+    propriete = soup.find_all("img")
+    
+    with open("requete.py", "w") as file:
+        file.write(str(propriete))
+                
+    with open("requete.py", "r") as file2:
+        b = file2.read()
+    liste.append(b)
+
+
+    for i in range(1):
+        a = str(liste).find(str("src"))
+        b = str(liste).find(str('" width='))
+        
+        url = liste[0][a+2:b-3]
+        image = str("image_"+self.phrase+str(i)+".jpg")
+
+        liste[0] = liste[0][b:-3]
+
+        urllib.request.urlretrieve(str(url), image)
+
+        self.liste1.append(image)
+
+#a verifier liste1 je sais plus a quoi ca sert
+
 
 
     
@@ -120,14 +167,6 @@ def home():
 
 
 
-def search_wikipedia():
-    pass
-
-
-def search_picture():
-    pass
-
-
 
 @app.route('/data', methods=["POST"])
 def data():
@@ -135,10 +174,10 @@ def data():
     """from jquerry function() who define content from input"""
 
    
-    
+    LISTE_PHRASE = []
     data = request.form['data']
  
-
+    parsing_texte(data)
 
     date = datetime.now()
     date = str(date)
@@ -148,10 +187,20 @@ def data():
     LISTE.append("<div><strong>Votre question: </strong></div>")
     LISTE.append("<div style='font-style:italic'>{}</div>".format(data))
     
-    
+    if LISTE_PHRASE != []:
+        
+        var = searching(data)
+        
+        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
+        LISTE.append("<div><strong>{}</strong></div>".format(LISTE_PHRASE[0]))
+        LISTE.append("<br>")
+        
+        return jsonify({'data':LISTE})
 
-    if data :
-        print(data,"YOOOOOOOOOOOOOOOOOOOOOOO")
+
+
+    elif data :
+        
         #we take arg from data (recup input stuff u know bia calm)
         #we stoking variables into var variable
         
@@ -162,6 +211,10 @@ def data():
         LISTE.append("<br>")
         
         return jsonify({'data':LISTE})
+
+
+
+
 
     return jsonify({'error':'...'})
 
@@ -254,9 +307,6 @@ if __name__== "__main__":
     
     db.create_all()
     app.run(debug=True, port=3000)
-
-
-
     home()
      
 
