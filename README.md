@@ -27,3 +27,5 @@
 - ajouter favoris(adresse en favoris)
 
 - bien faire la mis en page(truk reponsive + tableau page)
+
+- y va tout faire sauf ce qui se trouve sur la la liste
