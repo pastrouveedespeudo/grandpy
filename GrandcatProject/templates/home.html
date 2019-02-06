@@ -4,16 +4,9 @@
   {%block body%}
 
   
-    <style type="text/css">
+  <style type="text/css">
 
-        .div{
-            position:relative;
-            left:275px;
-            style="width:600px;
-            height:300px;
-            border:2px solid #999999;
-            text-align:center;
-        }
+
 
         form{
             text-align:center;
@@ -30,27 +23,28 @@
         .classRecupInfo{
             text-align:center;
             font-style:italic;
+            margin:0 auto;
         }
 
 
-        .div{
+        .monCadre{
+            position:relative;
             margin-top:-200px;
-            text-align:center;
             border:2px solid black;
             width: 580px;
             height: 300px;
             background-color:green;
             overflow:scroll;
+            margin:0 auto;
         }
 
 
         #map{
-        
             height:200px;
             width:20%;
-            margin-left:900px;
-            top:0px;
-            position: fixed
+            margin-top:auto;
+            margin-left:910px;
+
         }
 
 
@@ -58,36 +52,46 @@
         #image1{
             margin-top:auto;
             margin-left:910px;
+           
         }
 
         .formPseudo{
             margin-top:-200;
             margin-right:910px;
         }
+
+        #monCadreWiki{
+            margin:0 auto;
+            border: 2px solid black;
+            width: 580px;
+            height: 150px;
+            overflow:scroll;
+
+        }
      
-    </style>
+  </style>
 
     
-      <form class="formPseudo">
+  <form class="formPseudo">
 
-          <input type="text" class="classRecupPseudo" id="idRecupPseudo" size="30" 
-              placeholder="Salut rentre ton pseudo"/><br>
-
-
-          <input type="submit" class="classButtonPseudo" id="idButtonPseudo" value="Enter"/>
+    <input type="text" class="classRecupPseudo" id="idRecupPseudo" size="30" 
+    placeholder="Salut rentre ton pseudo"/><br>
 
 
-      </form>
+    <input type="submit" class="classButtonPseudo" id="idButtonPseudo" value="Enter"/>
+
+
+  </form>
       
   
-      <div id="image1"><img src="static/images/tourne/five.jpg"/></div>   
+    <div id="image1"><img src="static/images/tourne/five.jpg"/></div>   
       
       <div id="map"></div>
-      
-      <div class="div" id="id">
-          <div id="monCadre"></div>
-      </div>
-      
+
+      <div id="monCadreWiki"></div>
+      <br><br>
+      <div id="monCadre", class="monCadre"></div>
+
 
 
       
@@ -110,7 +114,7 @@
       <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
 
 
- 
+   
 
 
 
@@ -127,8 +131,12 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2O8fe5cHDLkjjFk4TQ9Os5Y3vFGmqU8&callback=initMap">
     </script>
 
+
+
+    
+
   <script type = "text/javascript">
-  
+      MONCADRE = []
 
       $(document).ready(function(){
 
@@ -146,61 +154,147 @@
               .done(function(data){
 
                   if (data.error){
-                      $("#monCadreAlert").text(data.error).show();
-                      $("#monCadre").hide();
+                      $("#monCadreAlert").text(data.error);
+                      $("#monCadre");
                   }
                   else{
-                      $("#monCadre").text(data.data).show();
-                      $("#monCadreAlert").hide();
+                      $("#monCadre").html(data.data);
+                      $("#monCadreAlert");
                       initMap();
                       
                   }
 
 
               });
-              message();
+              
               effacer();
               e.preventDefault();
               
           });
       });
 
-
-      //Here we input pseudo from users
-      $(document).ready(function(){
-
-          $("form").on("submit", function(e){
-
-              $.ajax({
-                  data:{
-                      data:$("#idRecupPseudo").val(),
-
-                  },
-                  type:"POST",
-                  url:"/login"
-
-              })
-              .done(function(data){
-
-                  if (data.error){
-                      $("#monCadreAlert").text(data.error).show();
-                      $("#monCadre").hide();
-                  }
-                  else{
-                      $("#monCadre").text(data.data).show();
-                      $("#monCadreAlert").hide();
-                      initMap();
-                      
-                  }
+   
 
 
-              });
-              message();
-              effacer();
-              e.preventDefault();
-              
-          });
-      });
+      
+
+
+
+      function initMap(){
+          
+          liste = [[],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[],
+                   [],[],[],[],[],[],[],[]]
+          
+          liste2 = []
+          
+          var c = document.getElementById("monCadre");
+          var a = c.innerText || c.textContent;
+          var b = a.length;
+          console.log(a)
+          
+          var c = 0;
+
+          for(var i = 0; i<=b;i++){
+            liste[c].push(a[i]);
+            if(a[i] === ","){
+                c++;
+                };
+          };
+
+          for(var i =0;i<=liste.length;i++){
+              if(liste[i]!=""){
+                  liste2.push(liste[i]);
+              }
+           };
+          console.log(liste2)
+          a = Number(liste2[liste2.length -3].slice(1,-1).join(''));
+          b = Number(liste2[liste2.length -2].slice(2,-5).join(''));
+          console.log(liste2)
+          console.log(a)
+          console.log(b)
+          console.log(liste2.length -2)
+      
+    
+          var options = {
+              zoom:13,
+              center:{lat:a,lng:b}
+          }
+          var map = new google.maps.Map(document.getElementById("map"), options);
+      } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       
@@ -208,20 +302,10 @@
           document.getElementById("idRecupInfo").value = "";
       }
 
-      HISTORIC = []
-      function message(){
-          var a = document.getElementById("idRecupInfo").value;
-          HISTORIC.push(a);
-          console.log(HISTORIC);
-      }
+      
+
 
       
-      HISTORIC2 = []
-      function catch_monCadre(){
-          var a = document.getElementById("monCadre").value;
-          HISTORIC.push(a);
-          console.log(HISTORIC2);
-      }
 
 
       function add_database(){
@@ -256,47 +340,8 @@
 
 
 
-      function initMap(){
-          
-          liste = [[],[],[],[],[],[],[],[],
-                   [],[],[],[],[],[],[],[],
-                   [],[],[],[],[],[],[],[]]
-          
-          liste2 = []
-          
-          var c = document.getElementById("monCadre");
-          var a = c.innerText || c.textContent;
-          var b = a.length;
-          console.log(a)
-          
-          var c = 0;
 
-          for(var i = 0; i<=b;i++){
-                    liste[c].push(a[i]);
-                    if(a[i] === ","){
-                      c++;
-                    };
-                  };
 
-          for(var i =0;i<=liste.length;i++){
-              if(liste[i]!=""){
-                  liste2.push(liste[i]);
-              }
-           };
-
-          a = Number(liste2[liste2.length -3].slice(0,-1).join(''));
-          b = Number(liste2[liste2.length -2].slice(0,-1).join(''));
-
-          console.log(a)
-          console.log(b)
-      
-
-          var options = {
-              zoom:13,
-              center:{lat:a,lng:b}
-          }
-          var map = new google.maps.Map(document.getElementById("map"), options);
-      } 
        
 
 
