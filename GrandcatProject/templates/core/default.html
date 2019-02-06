@@ -1,2 +1,66 @@
-{%include "core/nav/nav.html"%}
-{%block body%}{% endblock %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+    
+        <meta charset="utf-8" />
+           
+        <title>GrandPY</title>
+
+
+        <style>
+            h1{
+                text-align:center;
+
+            }
+            h2{
+                text-align:center;
+
+            }
+
+
+            .image1{
+                border="6";
+                border-radius:8px;
+            }
+
+            .menu{
+                position:relative;
+                left:2500px;
+            }
+
+            h3{
+                text-align:center;
+                font-style:italic;
+
+            }
+
+        </style>
+
+
+        <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
+
+           
+        <h1>{{title_page}}</h1>
+        <h2>Hey I'm GrandCat</h2>
+        <h3>Site exclusivement réservé à la recherche d'adresse</h3>
+
+
+        <ul>
+            <li><a href="{{url_for("home")}}">Home</a></li>
+            <li><a href="{{url_for("inscription")}}">S'inscrire</a></li>
+            <li><a href="{{url_for("contact")}}">Contact</a></li>
+            <li><a href="{{url_for("about")}}">About</a></li>
+        </ul>
+
+
+
+        </head>
+            
+        <body>
+            {%block body%}{% endblock body%}
+        </body>
+            
+
+
+</html>
