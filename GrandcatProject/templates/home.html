@@ -87,10 +87,13 @@
     <input type="submit" class="classButtonPseudo" id="idButtonPseudo" value="Enter"/>
 
 
+  <div class="essais" id ="essaie"></div>
+
+
   </form>
       
   
-    <div id="image1"><img src="static/images/tourne/five.jpg"/></div>   
+    <div id="image1" class="image1"><img id="tourne" src="static/images/chargement/one.jpg"/></div>   
       
       <div id="map"></div>
 
@@ -115,7 +118,7 @@
 
       </form>
 
-
+      <div id = "heure" class ="heure"></div>
 
       <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
 
@@ -142,6 +145,42 @@
     
 
   <script type = "text/javascript">
+
+   
+                       
+
+
+
+
+      var liste_image_logo = ["/static/images/loading/one.jpg",
+                              "/static/images/loading/two.jpg",
+                              "/static/images/loading/one.jpg",
+                              "/static/images/loading/two.jpg",
+                              "/static/images/loading/three.jpg"];
+
+
+      var liste_image_logo_i = 0
+      
+      function change_image(){
+        document.getElementById('tourne').src = liste_image_logo[liste_image_logo_i];
+        if(liste_image_logo_i < liste_image_logo.length - 1){
+          liste_image_logo_i++
+        }
+        else{
+          liste_image_logo_i = 0
+        }
+      };
+
+      window.setInterval("change_image()", 1000);
+
+
+
+ 
+
+
+
+
+
 
     $(document).ready(function(){
       $("#formPseudo").on("submit", function(ev){
@@ -447,25 +486,6 @@
 
 
 
-
-
-      function image_tourne(){
-          var liste = [
-              "one.jpg",
-              "two.jpg",
-              "three.jpg",
-              "for.jpg",
-              "five.jpg"
-              ];
-          
-      document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-          for(var i = 0; i >= liste.length; i++){
-              
-              document.getElementById("image1").innerHTML = `<img src="static/images/tourne/${liste[4]}" />`;
-          };
-      };
-
-      setTimeout(image_tourne(),500);
 
 
 
