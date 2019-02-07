@@ -32,4 +32,6 @@
 
 - rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <--
 
-- si t'efface le contenu de ton input du con l'autre fonction recupere du vide ^^
+- ok ca part dans tous les sens c'est hyper sympa mais ils vont jamais accepter ca....
+
+- la requetet json prendre 2 lignes... 
