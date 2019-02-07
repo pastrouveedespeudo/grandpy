@@ -8,7 +8,7 @@
 
 - ah ca grr que le texte se cumule dans le cadre ............................................. ok 
 
-- faire d'autre page
+
 
 - image quand tu passes dessus ca se met en rond
 
@@ -30,7 +30,9 @@
 
 - faire le debut de tchat bot que politesse debut convers
 
-- rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <--
+- rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <-- transforme ca en de ou l' le
+
+- effacer les listes globales avec [[]][][][][][]]
 
 - ok ca part dans tous les sens c'est hyper sympa mais ils vont jamais accepter ca....
 
