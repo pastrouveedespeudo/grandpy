@@ -24,4 +24,6 @@
 
 - effacer les listes globales avec [[]][][][][][]]
 
-- 
+- ok ca marche mais c anormalement lent trouve pk ptetre les listes gloglo pleines....
+
+- si ca met autant de temps que la fais json
