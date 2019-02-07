@@ -173,13 +173,21 @@
         }
       };
 
-      window.setInterval("change_image()", 1000);
 
+
+      var time;
+      function start_logo_loading(){
+        time = window.setInterval("change_image()", 1000);
+      }
+      
+
+      function stop_logo_loading(){
+        clearTimeout(time);
+      }
+      
 
 
  
-
-
 
 
 
@@ -204,6 +212,7 @@
           else{
               $("#divPseudo").html(data.data);
               $("#monCadreAlert");
+              alert("fini")
               
               
           }
@@ -221,7 +230,8 @@
 
 
 
-
+  
+      
 
 
 
@@ -229,9 +239,9 @@
       MONCADRE = []
 
       $(document).ready(function(){
-
+          
           $("form").on("submit", function(e){
-
+              start_logo_loading();
               $.ajax({
                   data:{
                       data:$("#idRecupInfo").val(),
@@ -272,7 +282,7 @@
       MONCADRE_WKI = []
 
       $(document).ready(function(){
-
+          var finish2 = []
           $("form").on("submit", function(ev){
 
               $.ajax({
@@ -295,6 +305,7 @@
                   else{
                       $("#monCadreWiki").html(data.data);
                       $("#monCadreAlert");
+                      stop_logo_loading();
                   }
               });
               
