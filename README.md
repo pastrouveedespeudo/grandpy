@@ -1,6 +1,6 @@
 # grandpy
 
-- page dynamique........................................................................ semi ok
+- page dynamique........................................................................  ok
 
  - afficher le prenom (c pas inscription)...............................OK
 
@@ -18,7 +18,7 @@
 
 
 
-- parser wikipédia..................................................................presque ok(reste a le mettre dans le truk)
+- parser wikipédia..................................................................ok
 
 - afficher une image du batiment.......................................presque ok verifier si ca marche(et le mettre dans html)
 
