@@ -31,6 +31,8 @@ Bootstrap(app)
 LISTE = []
 LISTE_PHRASE = []
 LISTE_WIKI = []
+
+
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
@@ -55,7 +57,7 @@ def parsing_texte(data):
     """Here we'll go to parsing data"""
     """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
     """we juste take the last word from the sentece"""
-    
+    #Salut GrandPY ! Est-ce que tu connais l'adresse de openclassrooms
     liste = []
     liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
@@ -63,7 +65,7 @@ def parsing_texte(data):
     phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse de"
     a = str(data).find(str(phrase_accroche))
     if a >= 0 :
-       
+        
         liste.append(data)
 
         c=0
@@ -82,7 +84,7 @@ def parsing_texte(data):
         liste2 = liste2[0:c]
         dataa = "".join(liste2[-1])
         LISTE_PHRASE.append(dataa)
-        print(dataa)
+        
         
 
     elif a <= 0:
@@ -94,16 +96,142 @@ def parsing_texte(data):
     #sois y'a rien et on envoie erreur soit chais pas
 
 
+        
+@app.route('/')
+def home():
+    """Here we just display home page"""
 
-def parsing_texte_wiki():
-    pass
+    title_page = "HOME"
+    return render_template("home.html",title_page=title_page)
+
+
+
+
+@app.route('/data', methods=["POST"])
+def data():
+    """Here, we just recup data with request form"""
+    """from jquerry function() who define content from input"""
+
+    data = request.form['data']
+ 
+    parsing_texte(data)
+   
+    
+    date = datetime.now()
+    date = str(date)
+    
+    LISTE.append("<div style='font-style:italic;'>A {}</div>".format(date))
+
+    LISTE.append("<div><strong>Votre question: </strong></div>")
+    LISTE.append("<div style='font-style:italic'>{}</div>".format(data))
+    
+
+    
+    if data and LISTE_PHRASE == []:
+        
+        #we take arg from data
+        #we stoking variables into var variable
+        
+        var = searching(data)
+        
+        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
+        LISTE.append("<div><strong>{}</strong></div>".format(var))
+        LISTE.append("<br>")
+        
+        return jsonify({'data':LISTE})
+
+
+    elif LISTE_PHRASE != []:
+        
+        print(LISTE_PHRASE)
+        var = searching(str(LISTE_PHRASE[-1]))
+        
+        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
+        LISTE.append("<div><strong>{}</strong></div>".format(var))
+        LISTE.append("<br>")
+        
+        return jsonify({'data':LISTE})
+
+
+
+    return jsonify({'error':'...'})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+@app.route('/login', methods=["POST"])
+def login():
+    
+    data = request.form['data']
+    if data:
+        
+        bienvenu = "<h1>Bienvenu {} !! le mettre dans une bulle a coté du chat </h1>".format(data)
+
+        return jsonify({'data':bienvenu})
+
+    return jsonify({'error':'...'})
+
+
+
+@app.route('/registration', methods=["GET", "POST"])
+def registration():
+    """This function can be couple to database"""
+    """for eventually account"""
+    #faudra mettre <name> ca dit coucou le nom
+    return render_template("home.html")
+
+        
+
+
+
+
+@app.route('/inscription')
+def inscription():
+    title_page = "INSCRIPTION"
+    return render_template("pages/inscription.html", title_page=title_page)
+
+
+
+
+
+@app.route('/inscription') #a faire
+def wiki():
+    LISTE_WIKI = []
+
 
 def search_wikipedia(data):
+    """Here we just parsing data from source code from wikipedia"""
+    """We searching all <p> from source code"""
+    """we take it into liste, and we add it to a new liste"""
+    """except sentence begening by (cf one two three)"""
+    """In a last time we add it again... to a finally liste"""
+    """without /n"""
     
     liste = []
     liste2 = []
     liste3 = []
-    LISTE_WIKI = []
+    
     
     path = "https://fr.wikipedia.org/wiki/{}".format(data)
 
@@ -144,8 +272,13 @@ def search_wikipedia(data):
     LISTE_WIKI.append(liste3)
 
 
-def search_picture(phrase, liste1):
 
+
+def search_picture(phrase, liste1):
+    """Here we capture picture from google image"""
+    """again we go to source code, we capturing all <img>"""
+    """and we take it"""
+    
     self.phrase = phrase
 
     liste = []
@@ -180,126 +313,6 @@ def search_picture(phrase, liste1):
         self.liste1.append(image)
 
 #a verifier liste1 je sais plus a quoi ca sert
-
-
-
-    
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True)
-    email = db.Column(db.String(120), unique=True)
-
-
-
-class Echange(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    dateHeure = db.Column(db.String(80), unique=True)
-    message = db.Column(db.Text(200), unique=True)
-
-
-
-
-
-        
-@app.route('/')
-def home():
-    """Here we just display home page"""
-
-    title_page = "HOME"
-    return render_template("home.html",title_page=title_page)
-
-
-
-
-@app.route('/data', methods=["POST"])
-def data():
-    """Here, we just recup data with request form"""
-    """from jquerry function() who define content from input"""
-
-   
-    LISTE_PHRASE = []
-    data = request.form['data']
- 
-    parsing_texte(data)
-
-    date = datetime.now()
-    date = str(date)
-    
-    LISTE.append("<div style='font-style:italic;'>A {}</div>".format(date))
-
-    LISTE.append("<div><strong>Votre question: </strong></div>")
-    LISTE.append("<div style='font-style:italic'>{}</div>".format(data))
-    
-    if LISTE_PHRASE != []:
-        
-        var = searching(data)
-        
-        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
-        LISTE.append("<div><strong>{}</strong></div>".format(LISTE_PHRASE[0]))
-        LISTE.append("<br>")
-        
-        return jsonify({'data':LISTE})
-
-
-
-    elif data :
-        
-        #we take arg from data (recup input stuff u know bia calm)
-        #we stoking variables into var variable
-        
-        var = searching(data)
-        
-        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
-        LISTE.append("<div><strong>{}</strong></div>".format(var))
-        LISTE.append("<br>")
-        
-        return jsonify({'data':LISTE})
-
-
-
-
-
-    return jsonify({'error':'...'})
-
-
-@app.route('/login', methods=["POST"])
-def login():
-    
-    data = request.form['data']
-    if data:
-        
-        bienvenu = "<h1>Bienvenu {} !! le mettre dans une bulle a coté du chat </h1>".format(data)
-
-        return jsonify({'data':bienvenu})
-
-    return jsonify({'error':'...'})
-
-
-
-@app.route('/registration', methods=["GET", "POST"])
-def registration():
-    """This function can be couple to database"""
-    """for eventually account"""
-    #faudra mettre <name> ca dit coucou le nom
-    return render_template("home.html")
-
-        
-
-
-
-
-@app.route('/inscription')
-def inscription():
-    title_page = "INSCRIPTION"
-    return render_template("pages/inscription.html", title_page=title_page)
-
-
-
-
-
-
-
-
 
 
 
