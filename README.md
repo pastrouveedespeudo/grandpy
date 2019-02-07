@@ -31,3 +31,5 @@
 - faire le debut de tchat bot que politesse debut convers
 
 - rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <--
+
+- si t'efface le contenu de ton input du con l'autre fonction recupere du vide ^^
