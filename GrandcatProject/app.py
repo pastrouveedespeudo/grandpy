@@ -2,7 +2,7 @@ import os
 import subprocess  
 from geopy.geocoders import Nominatim
 import request
-import bs4 as BeautifulSoup
+from bs4 import *
 import urllib.request
 from PIL import Image
 from flask import Flask
@@ -31,7 +31,10 @@ Bootstrap(app)
 LISTE = []
 LISTE_PHRASE = []
 LISTE_WIKI = []
-
+LOCALISATION_WIKI = []
+LISTE_WIKI_PARSE = []
+LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
+             [],[],[],[],[],[],[],[],[],[],[]]
 
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
@@ -48,7 +51,8 @@ def searching(parametre):
     a = location.address
     b = location.latitude
     c = location.longitude
-
+    LOCALISATION_WIKI.append(location.address)
+    
     #we stoking it into variable and return it
     return a, b, c
 
@@ -96,6 +100,100 @@ def parsing_texte(data):
     #sois y'a rien et on envoie erreur soit chais pas
 
 
+
+
+def select_wikipedia():
+    liste = [[],[],[],[],[],[],[],[],[],[],[],
+             [],[],[],[],[],[],[],[],[],[],[]]
+    liste2 = []
+     
+    c=0
+    
+    for i in LOCALISATION_WIKI[-1]:
+        for j in i:
+            if j == ",":
+                c+=1
+            else:
+                liste[c].append(j)
+
+    for i in liste:
+        if i == []:
+            pass
+        else:
+            liste2.append(i)
+    
+    for i in liste2:
+        LISTE_WIKI_PARSE.append("".join(i))
+
+  
+
+    for i in LISTE_WIKI_PARSE:
+        search_wikipedia(i)
+            
+    
+
+def search_wikipedia(para):
+    """Here we just parsing data from source code from wikipedia"""
+    """We searching all <p> from source code"""
+    """we take it into liste, and we add it to a new liste"""
+    """except sentence begening by (cf one two three)"""
+    """In a last time we add it again... to a finally liste"""
+    """without /n"""
+    
+    liste = []
+    liste2 = []
+    liste3 = []
+    compteur = 0
+    
+    
+    path = "https://fr.wikipedia.org/wiki/{}".format(para)
+
+    one = "Vous pouvez partager vos connaissances en"
+    two = "Géolocalisation"
+    three = " sur un des projets-frères de Wikipédia"
+    
+    requete = requests.get(path)
+    page = requete.content
+    soup = BeautifulSoup(page, "html.parser")
+    
+    propriete = soup.find_all("p")
+    for i in propriete:
+        liste.append(i.get_text())
+
+    c = 0
+    for i in liste:
+        c+=1
+        
+        a = str(i).find(one)
+        b = str(i).find(two)
+        c = str(i).find(three)
+      
+        if a >= 0 or b >= 0 or c >= 0:
+            pass
+        else:
+            liste2.append(i)
+
+    
+    for i in liste2:
+        for j in i:
+            if j == "\n":
+                pass
+            else:
+                liste3.append(j)
+
+    liste3 = "".join(liste3)
+    #print(liste3)
+    a = str(liste3).find(str("la page demandée est vide ou contient"))
+    b = str(liste3).find(str("Soit vous avez mal écrit"))
+    
+    if a < 0 and b < 0 and liste3 != "modifier ":
+        LISTE4[compteur].append(str(liste3))
+        compteur+=1
+        #et ajouter a laliste
+    liste3 = []  
+    
+ 
+
         
 @app.route('/')
 def home():
@@ -107,15 +205,33 @@ def home():
 
 
 
+
+@app.route('/wiki', methods=["POST"]) 
+def wiki():
+    
+    data_wiki = request.form['data']
+    searching(data_wiki)
+    select_wikipedia()
+  
+
+    
+    if data_wiki:
+        
+        return jsonify({'data':LISTE4[0][0]})
+
+    return jsonify({'error':'...'})
+
+
+
 @app.route('/data', methods=["POST"])
 def data():
     """Here, we just recup data with request form"""
     """from jquerry function() who define content from input"""
-
+    
     data = request.form['data']
- 
-    parsing_texte(data)
    
+    parsing_texte(data)
+ 
     
     date = datetime.now()
     date = str(date)
@@ -164,21 +280,6 @@ def data():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 @app.route('/login', methods=["POST"])
 def login():
@@ -210,67 +311,6 @@ def registration():
 def inscription():
     title_page = "INSCRIPTION"
     return render_template("pages/inscription.html", title_page=title_page)
-
-
-
-
-
-@app.route('/inscription') #a faire
-def wiki():
-    LISTE_WIKI = []
-
-
-def search_wikipedia(data):
-    """Here we just parsing data from source code from wikipedia"""
-    """We searching all <p> from source code"""
-    """we take it into liste, and we add it to a new liste"""
-    """except sentence begening by (cf one two three)"""
-    """In a last time we add it again... to a finally liste"""
-    """without /n"""
-    
-    liste = []
-    liste2 = []
-    liste3 = []
-    
-    
-    path = "https://fr.wikipedia.org/wiki/{}".format(data)
-
-    one = "Vous pouvez partager vos connaissances en"
-    two = "Géolocalisation"
-    three = " sur un des projets-frères de Wikipédia"
-    
-    requete = requests.get(path)
-    page = requete.content
-    soup = BeautifulSoup(page, "html.parser")
-    
-    propriete = soup.find_all("p")
-    for i in propriete:
-        liste.append(i.get_text())
-
-    c = 0
-    for i in liste:
-        c+=1
-        
-        a = str(i).find(one)
-        b = str(i).find(two)
-        c = str(i).find(three)
-      
-        if a >= 0 or b >= 0 or c >= 0:
-            pass
-        else:
-            liste2.append(i)
-
-    
-    for i in liste2:
-        for j in i:
-            if j == "\n":
-                pass
-            else:
-                liste3.append(j)
-
-    liste3 = "".join(liste3)
-    LISTE_WIKI.append(liste3)
-
 
 
 
