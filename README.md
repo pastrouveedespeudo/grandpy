@@ -30,4 +30,4 @@
 
 - faire le debut de tchat bot que politesse debut convers
 
-- et si on te demande pk t'as pas utilisé les api tu dis jvoualis teste une autre technique mais je sais faire ! mais c grave cool ^^
+- rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <--
