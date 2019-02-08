@@ -4,6 +4,9 @@
 
 - le projet suivant requiert les truks A FAIRE donc....
 
+- tu peux faire truk liste et {% for i in liste%}
+
+- et truncate pour afficher les 3 premeires phrases
 
 
 - page dynamique........................................................................  ok
