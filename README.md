@@ -1,5 +1,11 @@
 # grandpy
 
+- AVANT LA SOUTENANCE ENELEVE CE QUI EST A ENLEVER ET FAIS CE QUI EST A FAIR comme ca ca te remetttra dedans
+
+- le projet suivant requiert les truks A FAIRE donc....
+
+
+
 - page dynamique........................................................................  ok
 
  - afficher le prenom (c pas inscription)...............................OK
@@ -9,21 +15,19 @@
 - ah ca grr que le texte se cumule dans le cadre ............................................. ok 
 
  
-- database.......................................................................ok
+- database.......................................................................A ENLEVER
 
 - parser wikipédia..................................................................ok
 
-- afficher une image du batiment.......................................presque ok verifier si ca marche(et le mettre dans html)
+- afficher une image du batiment.......................................A ENLEVER
 
-- ajouter favoris(adresse en favoris).................................preque ok(reste a  faire le fonction js pour la mettre dans la base)
+- ajouter favoris(adresse en favoris).................................A ENLEVER
 
-- bien faire la mis en page(truk reponsive + tableau page)
+- bien faire la mis en page ..............................A FAIRE
 
 
-- rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <-- transforme ca en de ou l' le pr conte ca personne se ferais chier a ecrire tout ca grrr
+- rajoute Salut GrandPY ! Est-ce que tu connais l'adresse d' <-- transforme ca en de ou l' le pr conte ca personne se ferais chier a ecrire tout ca grrr .........................................................A FAIRE
 
-- effacer les listes globales avec [[]][][][][][]]
+- effacer les listes globales avec [[]][][][][][]]...............................................A FAIRE
 
-- ok ca marche mais c anormalement lent trouve pk ptetre les listes gloglo pleines....
 
-- si ca met autant de temps que la fais json
