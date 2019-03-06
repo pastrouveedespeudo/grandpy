@@ -2,6 +2,8 @@
 
 - un simple return == 10 000 listes un simple return... au debut jcroyais que print et return sté des synonyme avec une couleur différentes mais nan ! pas du tout rolalallala jme rend compte 
 
+- jme souviens les premieres fois dans mon appart snif ou jme suis dis return ok ca m'a grave venere que return sté comme print et que jme repété la definition d'une classe et mtn jpe scapper pk tu fais ta meuf gros ? ohohohoh va relire ton truk uml
+
 - heuresuemlent que j'ai découvert le return 
 
 - tu peux faire truk liste et {% for i in liste%}
