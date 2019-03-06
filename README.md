@@ -1,6 +1,6 @@
 # grandpy
 
-- oh bonneuh mere ca marche plus
+- refaire data et c ok
 
 - heuresuemlent que j'ai découvert le return 
 
