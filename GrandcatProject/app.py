@@ -206,11 +206,6 @@ def search_wikipedia(para):
 
 
 
-@app.route("/recup_data",methods=["POST"])
-def recup_data():
-    return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
-
-
 
 
 @app.route('/data', methods=["POST"])
@@ -237,13 +232,10 @@ def data():
     
 
     
-    if data and LISTE_PHRASE == []:
+    if data:
         
-        #we take arg from data
-        #we stoking variables into var variable
-        
-        var = searching(data)
-        
+        var = searching(dernier_mot)
+        print(var,"coucouuuuuuuuuuuuuu548468")
         LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
         LISTE.append("<div><strong>{}</strong></div>".format(var))
         LISTE.append("<br>")
@@ -251,17 +243,7 @@ def data():
         return jsonify({'data':LISTE})
 
 
-    elif LISTE_PHRASE != []:
-        
-        print(LISTE_PHRASE)
-  
-        var = searching(str(LISTE_PHRASE[-1]))
-        
-        LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
-        LISTE.append("<div><strong>{}</strong></div>".format(var))
-        LISTE.append("<br>")
-        
-        return jsonify({'data':LISTE})
+   
 
 
 
@@ -308,11 +290,11 @@ def parsing_texte(data):
         LISTE_PHRASE.append(dataa)
         
         
-        print(dataa,"5555555555555555555555555555555555555")
+        #print(dataa,"5555555555555555555555555555555555555")
         return dataa
 
     else:
-        print(data,"5555555555555555555555555555555555555")
+        #print(data,"5555555555555555555555555555555555555")
         return data
 
 
