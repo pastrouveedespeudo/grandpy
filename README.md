@@ -1,6 +1,6 @@
 # grandpy
 
-- un simple return == 10 000 listes un simple return...
+- un simple return == 10 000 listes un simple return... au debut jcroyais que print et return sté des synonyme avec une couleur différentes mais nan ! pas du tout rolalallala jme rend compte 
 
 - heuresuemlent que j'ai découvert le return 
 
