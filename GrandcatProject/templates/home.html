@@ -98,7 +98,7 @@
             margin-top:-200px;
             border:2px solid black;
             width: 580px;
-            height: 300px;
+            height: 150px;
             background-color:green;
             overflow:scroll;
             margin:0 auto;
@@ -107,7 +107,7 @@
 
         #map{
             height:200px;
-            width:900px;
+            width:700px;
             margin-top:auto;
             float-left;
         }
@@ -141,12 +141,14 @@
         }
         #payschat{
           height:200px;
-          width:850px;
+          width: 0 auto;
+
+    
 
         }
         #inp{
           float:left;
-          margin-top:-130px;
+   
         }
      
   </style>
@@ -164,13 +166,15 @@
       
         <div id="image1" class="col-lg-2 col-xs-12">
           <img id="tourne" src="static/images/tourne/one.jpg"/>
+          
         </div>
         
       
   
         <br>
         <div id="map" class="col-lg-6 col-xs-12">
-          <center><img src="static/images/pays.jpg" id="payschat"/></center>
+          <img src="static/images/yo.jpg" id="payschat"/>
+          <img src="static/images/p.jpg" id="payschat"/>
         </div>
 
       
@@ -184,7 +188,7 @@
         <div id="monCadreWiki" class="class="col-lg-6 col-xs-12"></div>
     
         <div id="monCadre", class="class="col-lg-6 col-xs-12"></div>
-
+        <br>
         <div class="class="col-lg-4 col-xs-12" id="inp">
           <form id="form_data">
 
@@ -193,11 +197,11 @@
 
       
             <input type="submit" class="classButtonInput" id="idButtonInput" value="Enter"/>
-
+            <center><img src="/static/images/chat_home.jpg" alt="imagecat" /></center>
 
          </form>
          
-         <p><img src="/static/images/chat_home.jpg" alt="imagecat" /></p>
+
          
        </div>
 
@@ -278,13 +282,14 @@
       
 
 
- 
+    
 
 
 
 
     $(document).ready(function(){
       $("#formPseudo").on("submit", function(ev){
+     
         $.ajax({
           data:{
             data:$("#idRecupPseudo").val(),
@@ -310,7 +315,7 @@
 
 
           });
-      
+          map();
           effacer();
           ev.preventDefault();
       
@@ -318,6 +323,12 @@
       });
 
    
+     function map(){
+
+        
+        document.getElementById("map").innerHTML = ""
+        document.getElementById("map").style.width = "580px"
+       }
 
 
 
@@ -363,6 +374,7 @@
               
               add_favorite();
               e.preventDefault();
+              map();
               
           });
       });
@@ -397,6 +409,7 @@
                       $("#monCadreWiki").html(data.data);
                       $("#monCadreAlert");
                       stop_logo_loading();
+                      
                   }
               });
               
