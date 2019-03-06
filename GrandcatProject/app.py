@@ -32,14 +32,11 @@ LISTE = []
 LISTE_PHRASE = []
 LISTE_WIKI = []
 LOCALISATION_WIKI = []
-LISTE_WIKI_PARSE = []
-LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
-             [],[],[],[],[],[],[],[],[],[],[]]
 
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
-    
+    print(parametre,"ooooooooooooooooooooooooooooooooop")
     geocoder = Nominatim(user_agent="app.py")
     #parametre is data recup from data()
     
@@ -51,101 +48,68 @@ def searching(parametre):
     a = location.address
     b = location.latitude
     c = location.longitude
-    LOCALISATION_WIKI.append(location.address)
-    
-    #we stoking it into variable and return it
+
     return a, b, c
 
 
-def apostrohpe(data):
 
-   
-    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse"
+                 
+@app.route('/')
+def home():
+    """Here we just display home page"""
+
+    title_page = "HOME"
+    return render_template("home.html",title_page=title_page)
+
+
+
+
+@app.route('/wiki', methods=["POST"]) 
+def wiki():
+    b = ""
+    data_wiki = request.form['data']
+
+    nettoyage = apostrohpe(data_wiki)
+    dernier_mot = parsing_texte(nettoyage)
     
-    a = str(data).find(str(phrase_accroche))
-    
-    if a >= 0:
-        
-        liste = []
-        for i in data:
-            liste.append(i)
-      
-
-        mot = []
-        c = 0
-        for i in liste:
-            
-            if liste[c] == "'":
-                liste[c] = "e"
-                mot.append(liste[c])
-                mot.append(" ")  
-            else:
-                mot.append(liste[c])    
-                
-            c+=1
-
-        mot = "".join(mot)
-
-        return mot
-       
-     
-
-
-
-
-def parsing_texte(data):
-    """Here we'll go to parsing data"""
-    """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
-    """we juste take the last word from the sentece"""
-    #Salut GrandPY ! Est-ce que tu connais l'adresse de openclassrooms
-    liste = []
-    liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
+    print(dernier_mot,'74777777777777777777777777777777777777777')
+    search = searching(dernier_mot)
+    print(search,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    c = select_wikipedia(search)
 
     
-    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse"
-    a = str(data).find(str(phrase_accroche))
-    if a >= 0 :
-        mot = apostrohpe(data)
-        liste.append(mot)
+    if data_wiki:
+        print(c)
+        print(search,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        return jsonify({'data':c})
 
-        c=0
-        for i in liste:
-            for j in i :
-                liste2[c].append(j)
-                if j == " ":
-                    c+=1
+    #return jsonify({'error':'...'})
 
-        c=0
-        for i in liste2:
-            if i == "" or i == [] :
-               pass
-            else:
-                c+=1
-        liste2 = liste2[0:c]
-        dataa = "".join(liste2[-1])
-        LISTE_PHRASE.append(dataa)
-        
-        
-        
-        return dataa
+    
 
-    else:
-        pass
 
-def select_wikipedia():
+
+def select_wikipedia(para):
     liste = [[],[],[],[],[],[],[],[],[],[],[],
              [],[],[],[],[],[],[],[],[],[],[]]
     liste2 = []
-     
+
+    LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
+             [],[],[],[],[],[],[],[],[],[],[]]
+
+  
+    LISTE_WIKI_PARSE = []
     c=0
-    
-    for i in LOCALISATION_WIKI[-1]:
+
+    para = str(para)
+    for i in para:
+   
         for j in i:
             if j == ",":
                 c+=1
             else:
                 liste[c].append(j)
-
+  
     for i in liste:
         if i == []:
             pass
@@ -153,23 +117,33 @@ def select_wikipedia():
             liste2.append(i)
     
     for i in liste2:
+     
         LISTE_WIKI_PARSE.append("".join(i))
 
-  
-    print(LISTE_WIKI_PARSE,"1111111111111111111111111")
-    for i in LISTE_WIKI_PARSE:
-        print(i)
-        search_wikipedia(i)
-            
+    print(LISTE_WIKI_PARSE,"89749879879879879879879879878")
     
+    c = 0
+    for i in LISTE_WIKI_PARSE:
+        if i == []:
+            pass
+        else:
+            print(i)
+            a = search_wikipedia(i)
+            LISTE4[c].append(a)
+
+        c+=1
+    print(LISTE4)
+    if LISTE4 == []:
+        return "Rien n'a été trouvé cha c bizzard ma gueule"
+    
+    return LISTE4
+
 
 def search_wikipedia(para):
-    """Here we just parsing data from source code from wikipedia"""
-    """We searching all <p> from source code"""
-    """we take it into liste, and we add it to a new liste"""
-    """except sentence begening by (cf one two three)"""
-    """In a last time we add it again... to a finally liste"""
-    """without /n"""
+
+    
+    LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
+             [],[],[],[],[],[],[],[],[],[],[]]
     
     liste = []
     liste2 = []
@@ -222,46 +196,20 @@ def search_wikipedia(para):
         compteur+=1
         #et ajouter a laliste
     liste3 = []  
-    
+    #print(LISTE4)
+    return LISTE4
  
 
-        
-@app.route('/')
-def home():
-    """Here we just display home page"""
-
-    title_page = "HOME"
-    return render_template("home.html",title_page=title_page)
 
 
 
 
 
-@app.route('/wiki', methods=["POST"]) 
-def wiki():
-    b = ""
-    data_wiki = request.form['data']
-    try:
-        
-        a = parsing_texte(data_wiki)
-     
-        searching(a)
-        select_wikipedia()
-        b = True
-    except:
-       pass
-    if b == True:
-        pass
-    else:
-        searching(data_wiki)
-        select_wikipedia()
 
-    
-    if data_wiki:
-        print(LISTE4[0][0])
-        return jsonify({'data':LISTE4[0][0]})
+@app.route("/recup_data",methods=["POST"])
+def recup_data():
+    return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
 
-    return jsonify({'error':'...'})
 
 
 
@@ -271,9 +219,13 @@ def data():
     """from jquerry function() who define content from input"""
     
     data = request.form['data']
-   
-    parsing_texte(data)
- 
+
+    nettoyage = apostrohpe(data)
+    dernier_mot = parsing_texte(nettoyage)
+
+    print(dernier_mot,"ouplapalpalpalpalpalpalpalpalaplpalaplapla")
+     
+    
     
     date = datetime.now()
     date = str(date)
@@ -302,6 +254,7 @@ def data():
     elif LISTE_PHRASE != []:
         
         print(LISTE_PHRASE)
+  
         var = searching(str(LISTE_PHRASE[-1]))
         
         LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
@@ -315,121 +268,89 @@ def data():
     return jsonify({'error':'...'})
 
 
-
-
-
-
-
-
-
+  
     
-@app.route('/login', methods=["POST"])
-def login():
-    
-    data = request.form['data']
-    if data:
-        
-        bienvenu = "<h1>Bienvenu {} !! le mettre dans une bulle a coté du chat </h1>".format(data)
-
-        return jsonify({'data':bienvenu})
-
-    return jsonify({'error':'...'})
-
-
-
-@app.route('/registration', methods=["GET", "POST"])
-def registration():
-    """This function can be couple to database"""
-    """for eventually account"""
-    #faudra mettre <name> ca dit coucou le nom
-    return render_template("home.html")
-
-        
 
 
 
 
-@app.route('/inscription')
-def inscription():
-    title_page = "INSCRIPTION"
-    return render_template("pages/inscription.html", title_page=title_page)
-
-
-
-def search_picture(phrase, liste1):
-    """Here we capture picture from google image"""
-    """again we go to source code, we capturing all <img>"""
-    """and we take it"""
-    
-    self.phrase = phrase
-
+def parsing_texte(data):
+    """Here we'll go to parsing data"""
+    """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
+    """we juste take the last word from the sentece"""
+    print(data,"coucocuocuocuocuocuocuoc")
     liste = []
-    self.liste1 = liste1
-    
-    path =  "https://www.google.co.in/search?q={0}&source=lnms&tbm=isch"
-    path1 = path.format(self.phrase)
-    requete = requests.get(path1)
-    page = requete.content
-    soup = BeautifulSoup(page, "html.parser")  
-    propriete = soup.find_all("img")
-    
-    with open("requete.py", "w") as file:
-        file.write(str(propriete))
-                
-    with open("requete.py", "r") as file2:
-        b = file2.read()
-    liste.append(b)
+    liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
+    
+    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais le adresse"
+    a = str(data).find(str(phrase_accroche))
+    print(a)
+    if a >= 0 :
+        mot = apostrohpe(data)
+        liste.append(mot)
 
-    for i in range(1):
-        a = str(liste).find(str("src"))
-        b = str(liste).find(str('" width='))
+        c=0
+        for i in liste:
+            for j in i :
+                liste2[c].append(j)
+                if j == " ":
+                    c+=1
+
+        c=0
+        for i in liste2:
+            if i == "" or i == [] :
+               pass
+            else:
+                c+=1
+        liste2 = liste2[0:c]
+        dataa = "".join(liste2[-1])
+        LISTE_PHRASE.append(dataa)
         
-        url = liste[0][a+2:b-3]
-        image = str("image_"+self.phrase+str(i)+".jpg")
+        
+        print(dataa,"5555555555555555555555555555555555555")
+        return dataa
 
-        liste[0] = liste[0][b:-3]
-
-        urllib.request.urlretrieve(str(url), image)
-
-        self.liste1.append(image)
-
-#a verifier liste1 je sais plus a quoi ca sert
+    else:
+        print(data,"5555555555555555555555555555555555555")
+        return data
 
 
 
+def apostrohpe(data):
 
-
-
-
-
-@app.route('/about', methods=["POST"])
-def about():
-    email = request.form['email']
-    name = request.form['name']
+   
+    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse"
     
-
-    if name:
-        name = name
-        jo = "coucou"
-        return jsonify({'name':name+ " " +jo})
-
-
+    a = str(data).find(str(phrase_accroche))
     
-    
-    return jsonify({'error':'Missing data!'})
- 
-    
+    if a >= 0:
+        
+        liste = []
+        for i in data:
+            liste.append(i)
+      
 
+        mot = []
+        c = 0
+        for i in liste:
+            
+            if liste[c] == "'":
+                liste[c] = "e"
+                mot.append(liste[c])
+                mot.append(" ")  
+            else:
+                mot.append(liste[c])    
+                
+            c+=1
 
-@app.route("/recup_data",methods=["POST"])
-def recup_data():
-    return jsonify({"a": "dict", "returned": "becomes", "a": "JSON object"}) 
+        mot = "".join(mot)
 
+        return mot
 
-@app.route('/yo', methods=['GET','POST'])
-def contact():
-    return render_template("pages/yo.html")
+    else:
+        return data
+
 
 
 
