@@ -21,9 +21,10 @@
             }
 
 
-            .image1{
+            #logo{
                 border="6";
                 border-radius:8px;
+      
             }
 
             .menu{
@@ -39,21 +40,27 @@
 
         </style>
 
-        <div class="divPseudo" id="divPseudo"></div>
-        <img src="/static/images/image1.jpg" class="image1" alt="logo"/>
 
-           
-        <h1>HOME</h1>
-        <h2>Hey I'm GrandCat</h2>
-        <h3>Site exclusivement réservé à la recherche d'adresse</h3>
+        
 
+        <div class="container">
+          <div class="row">
+          
+            <div class="col-lg-1 col-xs-12">
+                <img src="/static/images/image1.jpg" id="logo" alt="logo" />
+            </div>
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/inscription">S'inscrire</a></li>
-            <li><a href="/yo">Contact</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
+    
+            
+            <div class="col-lg-10 col-xs-12">
+              <h1>HOME</h1>
+              <h2>Hey I'm GrandCat</h2>
+              <h3>Site exclusivement réservé à la recherche d'adresse</h3>
+          </div>
+          
+         </div>
+      </div>
+
 
 
 
@@ -129,19 +136,15 @@
         #divFavorite{
           margin-right:0 auto;
         }
+        #payschat{
+          height:200px;
+          width:850px;
+
+        }
      
   </style>
 
  
-  <form class="formPseudo" id="formPseudo" >
-
-    
-    
-    <input type="text" class="classRecupPseudo" id="idRecupPseudo" size="30" 
-    placeholder="Salut rentre ton pseudo"/><br>
-
-
-    <input type="submit" class="classButtonPseudo" id="idButtonPseudo" value="Enter"/>
 
 
   <div class="essais" id ="essaie"></div>
@@ -156,7 +159,7 @@
       <br><br><br>
 
       <div class="row">
-      <div id="map" class="col-lg-8-col-xs-12" ></div>
+      <div id="map" class="col-lg-8-col-xs-12" ><center><img src="static/images/pays.jpg" id="payschat"/></center></div>
   </div>
   <br><br>
 
