@@ -57,6 +57,42 @@ def searching(parametre):
     return a, b, c
 
 
+def apostrohpe(data):
+
+   
+    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse"
+    
+    a = str(data).find(str(phrase_accroche))
+    
+    if a >= 0:
+        
+        liste = []
+        for i in data:
+            liste.append(i)
+      
+
+        mot = []
+        c = 0
+        for i in liste:
+            
+            if liste[c] == "'":
+                liste[c] = "e"
+                mot.append(liste[c])
+                mot.append(" ")  
+            else:
+                mot.append(liste[c])    
+                
+            c+=1
+
+        mot = "".join(mot)
+
+        return mot
+       
+     
+
+
+
+
 def parsing_texte(data):
     """Here we'll go to parsing data"""
     """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
@@ -66,11 +102,11 @@ def parsing_texte(data):
     liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
     
-    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse de"
+    phrase_accroche = "Salut GrandPY ! Est-ce que tu connais l'adresse"
     a = str(data).find(str(phrase_accroche))
     if a >= 0 :
-        
-        liste.append(data)
+        mot = apostrohpe(data)
+        liste.append(mot)
 
         c=0
         for i in liste:
@@ -89,7 +125,7 @@ def parsing_texte(data):
         dataa = "".join(liste2[-1])
         LISTE_PHRASE.append(dataa)
         
-        
+        print(LISTE_PHRASE)
 
     elif a <= 0:
         pass
