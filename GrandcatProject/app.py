@@ -125,18 +125,12 @@ def parsing_texte(data):
         dataa = "".join(liste2[-1])
         LISTE_PHRASE.append(dataa)
         
-        print(LISTE_PHRASE)
-
-    elif a <= 0:
-        pass
-    #ici on va faire le bot
+        
+        
+        return dataa
 
     else:
         pass
-    #sois y'a rien et on envoie erreur soit chais pas
-
-
-
 
 def select_wikipedia():
     liste = [[],[],[],[],[],[],[],[],[],[],[],
@@ -162,8 +156,9 @@ def select_wikipedia():
         LISTE_WIKI_PARSE.append("".join(i))
 
   
-
+    print(LISTE_WIKI_PARSE,"1111111111111111111111111")
     for i in LISTE_WIKI_PARSE:
+        print(i)
         search_wikipedia(i)
             
     
@@ -244,15 +239,26 @@ def home():
 
 @app.route('/wiki', methods=["POST"]) 
 def wiki():
-    
+    b = ""
     data_wiki = request.form['data']
-    searching(data_wiki)
-    select_wikipedia()
-  
+    try:
+        
+        a = parsing_texte(data_wiki)
+     
+        searching(a)
+        select_wikipedia()
+        b = True
+    except:
+       pass
+    if b == True:
+        pass
+    else:
+        searching(data_wiki)
+        select_wikipedia()
 
     
     if data_wiki:
-        
+        print(LISTE4[0][0])
         return jsonify({'data':LISTE4[0][0]})
 
     return jsonify({'error':'...'})
