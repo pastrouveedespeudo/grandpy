@@ -2,6 +2,8 @@
 
 - oh bonneuh mere ca marche plus
 
+- heuresuemlent que j'ai découvert le return 
+
 - tu peux faire truk liste et {% for i in liste%}
 
 - et truncate pour afficher les 3 premeires phrases
