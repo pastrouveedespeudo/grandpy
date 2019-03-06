@@ -1,6 +1,6 @@
 # grandpy
 
-- refaire data et c ok
+- un simple return == 10 000 listes un simple return...
 
 - heuresuemlent que j'ai découvert le return 
 
