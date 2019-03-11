@@ -17,3 +17,12 @@ def test_parsing_texte():
     sortie = "openclassrooms"
 
     assert script.parsing_texte(data) == sortie
+
+
+def test_searching():
+    para = 'OpenClassRooms'
+    sortie = ('OpenClassRooms, 7, Cité Paradis, Porte-St-Denis, 10e, Paris, Île-de-France, France métropolitaine, 75010, France', 48.8747786, 2.3504885)
+    assert script.searching(para) == sortie
+
+
+    
