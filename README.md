@@ -1,6 +1,6 @@
 # grandpy
 
--le systeme de liste est a chier en plus t'as pas l'air de ce que t'as l'air ou alors tu penses avoir l'air que t'as pas l'air
+#y'a un test qui passe pas et je comprend pas pourquoi c pourtant du str
 
 - heuresuemlent que j'ai découvert le return 
 
