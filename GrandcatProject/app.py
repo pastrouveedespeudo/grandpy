@@ -139,24 +139,24 @@ def wiki():
 
 
 
-
+    parsing_list_2 = parsing_list_2[1:]
     for i in parsing_list_2:
         if i == "":
             pass
+     
         else:
-    
+            print(i)
             wiki_wiki = wikipediaapi.Wikipedia('fr')
             page_py = wiki_wiki.page('{}'.format(i[1:]))
             
             existe = page_py.exists()
             if existe == True:
-                print(i)
                 break
 
 
     sentence_from_grandpy = ["chochochocolat", "en voici en voila",
                              "vive les patates", "dites oui pas non, c jb le plus bo ?",
-                            "TU PEUX PAS TESTE SHYVA chai pas qui c"]
+                             "TU PEUX PAS TESTE SHYVA chai pas qui c"]
     
 
     choix = random.choice(sentence_from_grandpy)
@@ -168,17 +168,7 @@ def wiki():
     if data_wiki:
         return jsonify({'data':page})
 
-    #return jsonify({'error':'...'})
-
-
- 
-
-
-    
-
-
-
-
+  
 
 
 @app.route('/data', methods=["POST"])
