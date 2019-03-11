@@ -157,8 +157,9 @@ def select_wikipedia(para):
                 else:
                     liste5 = i[0][0]
 
-
-    return liste5[0]
+    with open("yo.py","w") as file:
+        file.write(str(liste5[0][:2000]))
+    return str(liste5[0][:2000]) + "..."
 
 
 def search_wikipedia(para):
