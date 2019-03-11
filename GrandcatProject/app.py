@@ -11,7 +11,6 @@ from flask import url_for
 from flask import jsonify
 from geopy.geocoders import Nominatim
 from flask import render_template
-from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import mysql.connector
@@ -21,11 +20,6 @@ import requests
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/db.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-
-Bootstrap(app)
 
 
 LISTE = []
@@ -36,7 +30,7 @@ LOCALISATION_WIKI = []
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
-    print(parametre,"ooooooooooooooooooooooooooooooooop")
+    print(parametre)
     geocoder = Nominatim(user_agent="app.py")
     #parametre is data recup from data()
     
@@ -48,8 +42,9 @@ def searching(parametre):
     a = location.address
     b = location.latitude
     c = location.longitude
-
+    print(a,b,c,"999999999999999999999999999999999999999999999999999999")
     return a, b, c
+
 
 
 
@@ -79,7 +74,7 @@ def wiki():
 
     
     if data_wiki:
-        print(c)
+    
         print(search,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         return jsonify({'data':c})
 
@@ -87,20 +82,18 @@ def wiki():
 
     
 
-
-
 def select_wikipedia(para):
     liste = [[],[],[],[],[],[],[],[],[],[],[],
              [],[],[],[],[],[],[],[],[],[],[]]
     liste2 = []
 
     LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
-             [],[],[],[],[],[],[],[],[],[],[]]
+              [],[],[],[],[],[],[],[],[],[],[]]
 
   
     LISTE_WIKI_PARSE = []
     c=0
-
+    print(para,"46498789798798fezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
     para = str(para)
     for i in para:
    
@@ -120,7 +113,7 @@ def select_wikipedia(para):
      
         LISTE_WIKI_PARSE.append("".join(i))
 
-    print(LISTE_WIKI_PARSE,"89749879879879879879879879878")
+    #print(LISTE_WIKI_PARSE,"89749879879879879879879879878")
     
     c = 0
     for i in LISTE_WIKI_PARSE:
@@ -132,25 +125,53 @@ def select_wikipedia(para):
             LISTE4[c].append(a)
 
         c+=1
-    print(LISTE4)
+
+    print("oyéoyéoyéoyéoéyoéyoéyoyéoyé")
+    liliste = []
     if LISTE4 == []:
         return "Rien n'a été trouvé cha c bizzard ma gueule"
-    
-    return LISTE4
+
+    lliste = []
+    for i in LISTE4:
+        lliste.append(i)
+        with open("yo.py", "w", errors = "ignore") as file:
+            file.write(str(lliste))
+
+    liste5 = []
+    for i in lliste:
+        if i == [] or i == [[[], [], [], [], [], [], [], [], [], [], []]]:
+            pass
+        else:
+            if i[0] == []:
+                pass
+            else:
+                c= 0
+                for j in i[0][0]:
+                    for k in j:
+                        c+=1
+
+                if c < 200:
+                    pass
+                elif c > 10000:
+                    pass
+                else:
+                    liste5 = i[0][0]
+
+
+    return liste5[0]
 
 
 def search_wikipedia(para):
 
     
-    LISTE4 = [[],[],[],[],[],[],[],[],[],[],[],
-             [],[],[],[],[],[],[],[],[],[],[]]
+    LISTE4 = [[],[],[],[],[],[],[],[],[],[],[]]
     
     liste = []
     liste2 = []
     liste3 = []
     compteur = 0
     
-    
+    print(para,"000000000012345678913456789")
     path = "https://fr.wikipedia.org/wiki/{}".format(para)
 
     one = "Vous pouvez partager vos connaissances en"
@@ -194,7 +215,7 @@ def search_wikipedia(para):
     if a < 0 and b < 0 and liste3 != "modifier ":
         LISTE4[compteur].append(str(liste3))
         compteur+=1
-        #et ajouter a laliste
+        
     liste3 = []  
     #print(LISTE4)
     return LISTE4
@@ -243,17 +264,12 @@ def data():
         return jsonify({'data':LISTE})
 
 
-   
-
-
 
     return jsonify({'error':'...'})
 
 
   
     
-
-
 
 
 def parsing_texte(data):
@@ -346,7 +362,7 @@ def page_not_found(error):
 
 if __name__== "__main__":
     
-    db.create_all()
+
     app.run(debug=True, port=3000)
     home()
      
