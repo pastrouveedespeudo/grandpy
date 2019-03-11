@@ -16,7 +16,7 @@ from datetime import datetime
 import mysql.connector
 import requests
 import wikipediaapi
-
+import random
 
 app = Flask(__name__)
 
@@ -27,12 +27,12 @@ LISTE_PHRASE = []
 LISTE_WIKI = []
 LOCALISATION_WIKI = []
 
-LISTE_PAYS = ["France", "Francemétropolitaine"]
+LISTE_PAYS = [" France", " France métropolitaine", " Paris"]
 
 def searching(parametre):
     """Here we searching from Python modul(geopy.geocoders)"""
     """address from the input from html page"""
-    print(parametre)
+
     geocoder = Nominatim(user_agent="app.py")
     #parametre is data recup from data()
     
@@ -44,7 +44,7 @@ def searching(parametre):
     a = location.address
     b = location.latitude
     c = location.longitude
-    print(a,b,c,"999999999999999999999999999999999999999999999999999999")
+
     return a, b, c
 
 
@@ -72,7 +72,7 @@ def wiki():
     
     
     search = searching(dernier_mot)
-    print(search[0],'74777777777777777777777777777777777777777')
+
 
 
     c = 0
@@ -80,15 +80,13 @@ def wiki():
         
         if i == ",":
             c+=1
-        elif i == " ":
-            pass
+
         else:
             liste[c].append(i)
             
     
     c1 = 0
 
-    print(liste)
 
     parsing_list = []
     parsing_list_2 = []
@@ -122,7 +120,7 @@ def wiki():
 
     country = False
     for i in parsing_list:
-        print(i)
+   
         if i == []:
             pass
 
@@ -139,13 +137,34 @@ def wiki():
                 
         country = False
 
-    print("pars", parsing_list_2)
 
 
 
-
+    for i in parsing_list_2:
+        if i == "":
+            pass
+        else:
     
-    page = "cc"
+            wiki_wiki = wikipediaapi.Wikipedia('fr')
+            page_py = wiki_wiki.page('{}'.format(i[1:]))
+            
+            existe = page_py.exists()
+            if existe == True:
+                print(i)
+                break
+
+
+    sentence_from_grandpy = ["chochochocolat", "en voici en voila",
+                             "vive les patates", "dites oui pas non, c jb le plus bo ?",
+                            "TU PEUX PAS TESTE SHYVA chai pas qui c"]
+    
+
+    choix = random.choice(sentence_from_grandpy)
+    
+    page = ("<strong>" + str(choix) + ":" +"</strong>" + "<br>" + str(page_py.sections[0:200]) + "...")
+
+
+   
     if data_wiki:
         return jsonify({'data':page})
 
@@ -172,7 +191,7 @@ def data():
     nettoyage = apostrohpe(data)
     dernier_mot = parsing_texte(nettoyage)
 
-    print(dernier_mot,"ouplapalpalpalpalpalpalpalpalaplpalaplapla")
+
      
     
     
@@ -189,7 +208,7 @@ def data():
     if data:
         
         var = searching(dernier_mot)
-        print(var,"coucouuuuuuuuuuuuuu548468")
+   
         LISTE.append("<div style='font-style:italic'><strong>Addresse trouvée: </strong></div>")
         LISTE.append("<div><strong>{}</strong></div>".format(var))
         LISTE.append("<br>")
@@ -209,14 +228,14 @@ def parsing_texte(data):
     """Here we'll go to parsing data"""
     """if user input sentences: Salut GrandPY ! Est-ce que tu connais l'adresse de"""
     """we juste take the last word from the sentece"""
-    print(data,"coucocuocuocuocuocuocuoc")
+
     liste = []
     liste2 = [[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
     
     phrase_accroche = "Salut GrandPY ! Est-ce que tu connais le adresse"
     a = str(data).find(str(phrase_accroche))
-    print(a)
+
     if a >= 0 :
         mot = apostrohpe(data)
         liste.append(mot)
@@ -239,11 +258,11 @@ def parsing_texte(data):
         LISTE_PHRASE.append(dataa)
         
         
-        #print(dataa,"5555555555555555555555555555555555555")
+
         return dataa
 
     else:
-        #print(data,"5555555555555555555555555555555555555")
+   
         return data
 
 
