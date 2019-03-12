@@ -1,6 +1,6 @@
 # grandpy
 
-#y'a un test qui passe pas et je comprend pas pourquoi c pourtant du str
+#app no compatible pour la cinquentieme fois en comptant les double rage click 
 
 - heuresuemlent que j'ai découvert le return 
 
