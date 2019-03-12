@@ -1,6 +1,6 @@
 # grandpy
 
-#app no compatible pour la cinquentieme fois en comptant les double rage click 
+#ah baj ok c celle avec la plus grosse insulte qui passe merde hé ché pas ou ca c mis par conte je saurai pas le refaire 2 fois oh ben purée héroku c next lvl
 
 - heuresuemlent que j'ai découvert le return 
 
