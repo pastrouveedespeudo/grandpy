@@ -1,0 +1,4 @@
+web: gunicorn app.py.py:app --preload --workers 1
+init: FLASK_APP=app.py.py flask init_db
+
+
