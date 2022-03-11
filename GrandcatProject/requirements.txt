@@ -21,7 +21,7 @@ Jinja2==2.10
 MarkupSafe==1.1.0
 more-itertools==6.0.0
 mysql-connector==2.1.6
-Pillow==5.4.1
+Pillow==9.0.1
 pluggy==0.9.0
 post==2018.11.20
 public==2018.11.20
